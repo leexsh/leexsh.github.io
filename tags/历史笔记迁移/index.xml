@@ -1,12 +1,10 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
-        <title>my blogs</title>
-        <link>https://leexsh.github.io/</link>
-        <description>Blogger-Programmer-Gopher</description>
+        <title>历史笔记迁移 - 标签 - my blogs</title>
+        <link>https://leexsh.github.io/tags/%E5%8E%86%E5%8F%B2%E7%AC%94%E8%AE%B0%E8%BF%81%E7%A7%BB/</link>
+        <description>历史笔记迁移 - 标签 - my blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
-            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</lastBuildDate>
-            <atom:link href="https://leexsh.github.io/index.xml" rel="self" type="application/rss+xml" />
-        <item>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/%E5%8E%86%E5%8F%B2%E7%AC%94%E8%AE%B0%E8%BF%81%E7%A7%BB/" rel="self" type="application/rss+xml" /><item>
     <title>OC学习</title>
     <link>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</link>
     <pubDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</pubDate>

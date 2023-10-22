@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Go - 标签 - my blogs</title>
+        <link>https://leexsh.github.io/tags/go/</link>
+        <description>Go - 标签 - my blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 20:27:31 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/go/" rel="self" type="application/rss+xml" /><item>
+    <title>Go基础</title>
+    <link>https://leexsh.github.io/posts/go/go%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Sun, 22 Oct 2023 20:27:31 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/go/go%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[参考文档： Go语言的主要特征 · Go语言中文文档 Learn Go with tests go环境 从零开始搭建Go语言开发环境 - 李文周的博客 标识符和关键字 https://www.liwenzhou.com/posts/Go/01_var_and_const/ Go数据类型 Go语言]]></description>
+</item>
+</channel>
+</rss>
