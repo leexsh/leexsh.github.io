@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>优秀文档笔记 - my blogs</title><meta name="Description" content="Blogger-Programmer-Gopher"><meta property="og:title" content="优秀文档笔记" />
+<meta property="og:description" content="优秀文档阅读整理 分布式 ID 相关 vivo 自研鲁班分布式 ID 服务实践 分布式唯一 ID 浅谈 分布式 ID 生成服务的技术原理和项目实战 在业务开发中，大量场景需要唯一 ID 来" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://leexsh.github.io/images/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-22T21:22:42+08:00" />
+<meta property="article:modified_time" content="2023-10-22T21:22:42+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://leexsh.github.io/images/avatar.png"/>
+
+<meta name="twitter:title" content="优秀文档笔记"/>
+<meta name="twitter:description" content="优秀文档阅读整理 分布式 ID 相关 vivo 自研鲁班分布式 ID 服务实践 分布式唯一 ID 浅谈 分布式 ID 生成服务的技术原理和项目实战 在业务开发中，大量场景需要唯一 ID 来"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/" /><link rel="next" href="https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E6%94%B6%E9%9B%86/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "优秀文档笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/leexsh.github.io\/posts\/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "笔记, 技术","wordcount":  1206 ,
+        "url": "https:\/\/leexsh.github.io\/posts\/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0\/","datePublished": "2023-10-22T21:22:42+08:00","dateModified": "2023-10-22T21:22:42+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "leexsh"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about" title=";izzddd"> 关于 </a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about" title=";izzddd">关于</a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">优秀文档笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/leexsh" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>leexsh</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-22">2023-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 1206 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#分布式-id-相关">分布式 ID 相关</a>
+      <ul>
+        <li><a href="#特性">特性</a></li>
+        <li><a href="#分布式-id-方案">分布式 ID 方案</a>
+          <ul>
+            <li><a href="#uuid">UUID</a></li>
+            <li><a href="#数据库自增-id">数据库自增 ID</a></li>
+            <li><a href="#redis-生成-id">Redis 生成 ID</a></li>
+            <li><a href="#zookeeper-生成-id">Zookeeper 生成 ID</a></li>
+            <li><a href="#雪花算法">雪花算法</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="优秀文档阅读整理">优秀文档阅读整理</h1>
+<h2 id="分布式-id-相关">分布式 ID 相关</h2>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/MHhxU_G0d303R-b6T6EcoQ" target="_blank" rel="noopener noreffer ">vivo 自研鲁班分布式 ID 服务实践</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/10hn22MInanJXuT6wOYh1Q" target="_blank" rel="noopener noreffer ">分布式唯一 ID 浅谈</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/bFDLb6U6EgI-DvCdLTq_QA" target="_blank" rel="noopener noreffer ">分布式 ID 生成服务的技术原理和项目实战</a></p>
+</blockquote>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310170009546.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310170009546.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310170009546.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310170009546.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310170009546.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310170009546.png" /></p>
+<p>在业务开发中，大量场景需要唯一 ID 来进行标识：用户独一无二的身份认证、超市售卖的商品、微信的即时消息，它们都需要标识来确定唯一性。需要在特定范围内保证 ID 具备唯一性，这是 ID 生成服务最基本的要求。</p>
+<h3 id="特性">特性</h3>
+<p>① 唯一性：生成的 ID 唯一，特定范围不冲突；</p>
+<p>② 有序性：生成的 ID 按某种规则有序，趋势递增，便于入库和查询，但不严格要求；</p>
+<p>③ 高可用、高性能：高并发下的具备高可用，确保任何情况能容灾，稳定提供服务；</p>
+<p>④ 自主性：分布式环境下不依赖中心认证即可自行生成 ID；</p>
+<p>⑤ 安全性：脱敏，不暴露系统和业务的信息，如：订单数，用户数。</p>
+<h3 id="分布式-id-方案">分布式 ID 方案</h3>
+<h4 id="uuid">UUID</h4>
+<ul>
+<li>UUID 的标准形式为 32 个十六进制数组成的字符串，且分割为五个部分，例如：467e8542-2275-4163-95d6-7adc205580a9;</li>
+<li>可以基于时间、随机数等生成，可以完全在本地生成，不依赖网络；但是会造成 MAC 地址泄露等问题。</li>
+</ul>
+<h4 id="数据库自增-id">数据库自增 ID</h4>
+<ul>
+<li>
+<p>数据库自增 ID 是最常见的一种生成 ID 方式。利用数据库本身来进行设置，在全数据库内保持唯一。优势是使用简单，满足基本业务需求，天然有序；缺点是强依赖 DB，会由于数据库部署的一些特性而存在单点故障、数据一致性等问题。</p>
+</li>
+<li>
+<p>针对上面介绍的数据库自增 ID 的缺陷，会存在以下两种优化方案：</p>
+<ol>
+<li>数据库水平拆分，设置不同的初始值和相同的步长。这样可以有效的生成集群中的唯一 ID，也大大降低 ID 生成数据库操作的负载。</li>
+<li>批量生成一批 ID。这样可以将数据库的压力减小到先前的 N 分之一，且数据库故障后仍可继续使用一段时间。</li>
+</ol>
+</li>
+<li>
+<p>数据库自增 ID 方案的优势是非常简单，可利用现有数据库系统的功能实现；ID 号单调自增。其缺陷包括强依赖 DB，当 DB 异常时整个系统将处于不可用的状态；ID 号的生成速率取决于所使用数据库的读写性能。</p>
+</li>
+</ul>
+<h4 id="redis-生成-id">Redis 生成 ID</h4>
+<ul>
+<li>可以尝试使用 Redis 来生成 ID，主要使用 Redis 的原子操作 INCR 和 INCRBY 来实现。优势是不依赖于数据库，使用灵活，性能也优于数据库；而缺点则是可能要引入新的组件 Redis，如果 Redis 出现单点故障问题，则会影响序号服务的可用性。</li>
+</ul>
+<h4 id="zookeeper-生成-id">Zookeeper 生成 ID</h4>
+<ul>
+<li>主要是利用 Zookeeper 的 znode 数据版本来生成序列号，可以生成 32 位和 64 位的数据版本号，客户端可以使用这个版本号来作为唯一的序列号。由于需要依赖 zookeeper，并且是多步调用 API，如果在竞争较大的情况下，可能需要考虑使用分布式锁，故此种生成唯一 ID 的方法的性能在高并发的分布式环境下不甚理想</li>
+</ul>
+<h4 id="雪花算法">雪花算法</h4>
+<ul>
+<li>snowflake(雪花算法)是一个开源的分布式 ID 生成算法，结果是一个 long 型的 ID。snowflake 算法将 64bit 划分为多段，分开来标识机器、时间等信息，具体组成结构如下图所示：</li>
+</ul>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222309266.jpg"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222309266.jpg, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222309266.jpg 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222309266.jpg 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222309266.jpg"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222309266.jpg" /></p>
+<p>snowflake 算法的核心思想是使用 41bit 作为毫秒数，10bit 作为机器的 ID（比如其中 5 个 bit 可作为数据中心，5 个 bit 作为机器 ID）,12bit 作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID），最后还有一个符号位，永远是 0。</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-10-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-title="优秀文档笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-title="优秀文档笔记" data-ralateuid="x"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-title="优秀文档笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/baidu.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/%E7%AC%94%E8%AE%B0/">笔记</a>,&nbsp;<a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/oc/oc%E5%AD%A6%E4%B9%A0/" class="prev" rel="prev" title="OC学习"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>OC学习</a>
+            <a href="/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E6%94%B6%E9%9B%86/" class="next" rel="next" title="优秀文档收集">优秀文档收集<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/leexsh" target="_blank">leexsh</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":null,"algoliaIndex":null,"algoliaSearchKey":null,"highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
