@@ -1,0 +1,16 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>短链 - 标签 - my blogs</title>
+        <link>https://leexsh.github.io/tags/%E7%9F%AD%E9%93%BE/</link>
+        <description>短链 - 标签 - my blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 21:22:42 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/%E7%9F%AD%E9%93%BE/" rel="self" type="application/rss+xml" /><item>
+    <title>系统设计内容整理(1)-分布式 ID、短链、限流</title>
+    <link>https://leexsh.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 22 Oct 2023 21:22:42 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%BC%98%E7%A7%80%E6%96%87%E6%A1%A3%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[系统设计内容整理(1)-分布式 ID、短链、限流 关键词：分布式 ID 短链 限流 分布式 ID 相关 vivo 自研鲁班分布式 ID 服务实践 分布式唯一 ID 浅谈 分布式 ID 生成服务]]></description>
+</item>
+</channel>
+</rss>
