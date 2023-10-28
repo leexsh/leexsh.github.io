@@ -150,9 +150,13 @@
 </blockquote>
 <h1 id="分布式-id-相关">分布式 ID 相关</h1>
 <blockquote>
-<p><a href="https://mp.weixin.qq.com/s/MHhxU_G0d303R-b6T6EcoQ" target="_blank" rel="noopener noreffer ">vivo 自研鲁班分布式 ID 服务实践</a>
-<a href="https://mp.weixin.qq.com/s/10hn22MInanJXuT6wOYh1Q" target="_blank" rel="noopener noreffer ">分布式唯一 ID 浅谈</a>
-<a href="https://mp.weixin.qq.com/s/bFDLb6U6EgI-DvCdLTq_QA" target="_blank" rel="noopener noreffer ">分布式 ID 生成服务的技术原理和项目实战</a></p>
+<p><a href="https://mp.weixin.qq.com/s/MHhxU_G0d303R-b6T6EcoQ" target="_blank" rel="noopener noreffer ">vivo 自研鲁班分布式 ID 服务实践</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/10hn22MInanJXuT6wOYh1Q" target="_blank" rel="noopener noreffer ">分布式唯一 ID 浅谈</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://mp.weixin.qq.com/s/bFDLb6U6EgI-DvCdLTq_QA" target="_blank" rel="noopener noreffer ">分布式 ID 生成服务的技术原理和项目实战</a></p>
 </blockquote>
 <p><img
         class="lazyload"
@@ -214,8 +218,10 @@
 <p>snowflake 算法的核心思想是使用 41bit 作为毫秒数，10bit 作为机器的 ID（比如其中 5 个 bit 可作为数据中心，5 个 bit 作为机器 ID）,12bit 作为毫秒内的流水号（意味着每个节点在每毫秒可以产生 4096 个 ID），最后还有一个符号位，永远是 0。</p>
 <h1 id="短链设计">短链设计</h1>
 <blockquote>
-<p><a href="https://mp.weixin.qq.com/s/lmI98_UBTUwpfMkNWiu2Nw" target="_blank" rel="noopener noreffer ">短链系统设计</a>
-<a href="https://juejin.cn/post/7265155568398434343" target="_blank" rel="noopener noreffer ">转转短链平台设计与实现 - 掘金</a></p>
+<p><a href="https://mp.weixin.qq.com/s/lmI98_UBTUwpfMkNWiu2Nw" target="_blank" rel="noopener noreffer ">短链系统设计</a></p>
+</blockquote>
+<blockquote>
+<p><a href="https://juejin.cn/post/7265155568398434343" target="_blank" rel="noopener noreffer ">转转短链平台设计与实现 - 掘金</a></p>
 </blockquote>
 <p>通过短链系统可以把长链进行映射，方便传播。点击短链后，会通过重定向(301、302)的方式，映射到长链。</p>
 <p><img
@@ -265,8 +271,10 @@
 <p>每次新来一个原始网址，我们就生成一个新的短链，这种做法就会导致两个相同的原始网址生成了不同的短链。这个该如何处理呢？实际上，我们有两种处理思路。</p>
 <h1 id="限流">限流</h1>
 <blockquote>
-<p>GO:<a href="https://zhuanlan.zhihu.com/p/338368004" target="_blank" rel="noopener noreffer ">常用限流算法的应用场景和实现原理</a>
-Java:<a href="https://juejin.cn/post/7270486384104144956" target="_blank" rel="noopener noreffer ">从计数器到令牌桶 | 限流方法大揭秘 - 掘金</a></p>
+<p>GO:<a href="https://zhuanlan.zhihu.com/p/338368004" target="_blank" rel="noopener noreffer ">常用限流算法的应用场景和实现原理</a></p>
+</blockquote>
+<blockquote>
+<p>Java:<a href="https://juejin.cn/post/7270486384104144956" target="_blank" rel="noopener noreffer ">从计数器到令牌桶 | 限流方法大揭秘 - 掘金</a></p>
 </blockquote>
 <p>限流可以认为服务降级的一种，限流就是限制系统的输入和输出流量已达到保护系统的目的。为了保证系统的稳定运行，一旦达到的需要限制的阈值，就需要限制流量并采取一些措施以完成限制流量的目的。比如：延迟处理，拒绝处理，或者部分拒绝处理等等。</p>
 <h2 id="限流的几种方式">限流的几种方式</h2>
