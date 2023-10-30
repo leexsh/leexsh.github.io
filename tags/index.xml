@@ -4,20 +4,28 @@
         <link>https://leexsh.github.io/tags/</link>
         <description>Tags - 标签 - my blogs</description>
         <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
-            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 23:25:48 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/" rel="self" type="application/rss+xml" /><item>
-    <title>笔记</title>
-    <link>https://leexsh.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
-    <pubDate>Sun, 22 Oct 2023 23:25:48 &#43;0800</pubDate>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 30 Oct 2023 23:18:40 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/" rel="self" type="application/rss+xml" /><item>
+    <title>Go</title>
+    <link>https://leexsh.github.io/tags/go/</link>
+    <pubDate>Mon, 30 Oct 2023 23:18:40 &#43;0800</pubDate>
     <author>leexsh</author>
-    <guid>https://leexsh.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
+    <guid>https://leexsh.github.io/tags/go/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
     <title>技术</title>
     <link>https://leexsh.github.io/tags/%E6%8A%80%E6%9C%AF/</link>
-    <pubDate>Sun, 22 Oct 2023 23:25:48 &#43;0800</pubDate>
+    <pubDate>Mon, 30 Oct 2023 23:18:40 &#43;0800</pubDate>
     <author>leexsh</author>
     <guid>https://leexsh.github.io/tags/%E6%8A%80%E6%9C%AF/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>笔记</title>
+    <link>https://leexsh.github.io/tags/%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 22 Oct 2023 23:25:48 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/tags/%E7%AC%94%E8%AE%B0/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
@@ -66,14 +74,6 @@
     <pubDate>Sun, 22 Oct 2023 20:45:33 &#43;0800</pubDate>
     <author>leexsh</author>
     <guid>https://leexsh.github.io/tags/linux/</guid>
-    <description><![CDATA[]]></description>
-</item>
-<item>
-    <title>Go</title>
-    <link>https://leexsh.github.io/tags/go/</link>
-    <pubDate>Sun, 22 Oct 2023 20:27:31 &#43;0800</pubDate>
-    <author>leexsh</author>
-    <guid>https://leexsh.github.io/tags/go/</guid>
     <description><![CDATA[]]></description>
 </item>
 <item>
