@@ -1,23 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>搬运 on my blogs</title>
-    <link>https://leexsh.github.io/categories/%E6%90%AC%E8%BF%90/</link>
-    <description>Recent content in 搬运 on my blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
-    <webMaster>leexsh31@gmail.com (leexsh)</webMaster>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 05 May 2024 16:41:20 +0800</lastBuildDate><atom:link href="https://leexsh.github.io/categories/%E6%90%AC%E8%BF%90/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>优秀文章整理</title>
-      <link>https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%95%B4%E7%90%86/</link>
-      <pubDate>Sun, 05 May 2024 16:41:20 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%95%B4%E7%90%86/</guid>
-      <description>优秀文章合集 系统设计 1.分布式 ID vivo 自研鲁班分布式 ID 服务实践 分布式唯一 ID 浅谈 2.短链设计 短链系统设计 转转短链平台设计与实现 - 掘金 3.限流设计 令</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>搬运 - 分类 - my blogs</title>
+        <link>https://leexsh.github.io/categories/%E6%90%AC%E8%BF%90/</link>
+        <description>搬运 - 分类 - my blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 May 2024 16:41:20 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/categories/%E6%90%AC%E8%BF%90/" rel="self" type="application/rss+xml" /><item>
+    <title>优秀文章整理</title>
+    <link>https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%95%B4%E7%90%86/</link>
+    <pubDate>Sun, 05 May 2024 16:41:20 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/%E4%BC%98%E7%A7%80%E6%96%87%E7%AB%A0%E6%95%B4%E7%90%86/</guid>
+    <description><![CDATA[优秀文章合集 系统设计 1.分布式 ID vivo 自研鲁班分布式 ID 服务实践 分布式唯一 ID 浅谈 2.短链设计 短链系统设计 转转短链平台设计与实现 - 掘金 3.限流设计 令]]></description>
+</item>
+</channel>
 </rss>

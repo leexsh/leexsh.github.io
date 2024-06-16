@@ -1,32 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Linux on my blogs</title>
-    <link>https://leexsh.github.io/tags/linux/</link>
-    <description>Recent content in Linux on my blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
-    <webMaster>leexsh31@gmail.com (leexsh)</webMaster>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 22 Oct 2023 20:45:33 +0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Linux网络</title>
-      <link>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</link>
-      <pubDate>Sun, 22 Oct 2023 20:45:33 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</guid>
-      <description>1.网络基本知识： 1.数据链路层： 1.数据链路层解决的三个问题： 封装成帧 透明传输 差错检验 数据在网络中传输最大不能超过1500个字节 封装成帧：</description>
-    </item>
-    
-    <item>
-      <title>Linux基础</title>
-      <link>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</link>
-      <pubDate>Sun, 22 Oct 2023 20:29:40 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</guid>
-      <description>4种常见的IO模型： 同步阻塞 同步非堵塞 IO多路复用 异步IO https://www.cnblogs.com/straybirds/p/9479158.html 操作系统四个基本特性：并发 共享 虚拟 异步 1.内存 (1).连续内存分配策略：首次适配</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Linux - 标签 - my blogs</title>
+        <link>https://leexsh.github.io/tags/linux/</link>
+        <description>Linux - 标签 - my blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 20:45:33 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/linux/" rel="self" type="application/rss+xml" /><item>
+    <title>Linux网络</title>
+    <link>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</link>
+    <pubDate>Sun, 22 Oct 2023 20:45:33 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</guid>
+    <description><![CDATA[1.网络基本知识： 1.数据链路层： 1.数据链路层解决的三个问题： 封装成帧 透明传输 差错检验 数据在网络中传输最大不能超过1500个字节 封装成帧：]]></description>
+</item>
+<item>
+    <title>Linux基础</title>
+    <link>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</link>
+    <pubDate>Sun, 22 Oct 2023 20:29:40 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</guid>
+    <description><![CDATA[4种常见的IO模型： 同步阻塞 同步非堵塞 IO多路复用 异步IO https://www.cnblogs.com/straybirds/p/9479158.html 操作系统四个基本特性：并发 共享 虚拟 异步 1.内存 (1).连续内存分配策略：首次适配]]></description>
+</item>
+</channel>
 </rss>

@@ -1,0 +1,1312 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>OC学习 - my blogs</title><meta name="Description" content="Blogger-Programmer-Gopher"><meta property="og:title" content="OC学习" />
+<meta property="og:description" content="基础 import指令 #import 是 #include的增强 无论import多少次 只会包含一次。 autoreleasepool:自动释放池 编译 cc -c XX.m 链接 cc" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/" /><meta property="og:image" content="https://leexsh.github.io/images/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-22T20:56:21+08:00" />
+<meta property="article:modified_time" content="2023-10-22T20:56:21+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://leexsh.github.io/images/avatar.png"/>
+
+<meta name="twitter:title" content="OC学习"/>
+<meta name="twitter:description" content="基础 import指令 #import 是 #include的增强 无论import多少次 只会包含一次。 autoreleasepool:自动释放池 编译 cc -c XX.m 链接 cc"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/" /><link rel="prev" href="https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/" /><link rel="next" href="https://leexsh.github.io/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8Fid/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "OC学习",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/leexsh.github.io\/posts\/oc\/oc%E5%AD%A6%E4%B9%A0\/"
+        },"genre": "posts","keywords": "OC, 历史文档迁移, 技术","wordcount":  6327 ,
+        "url": "https:\/\/leexsh.github.io\/posts\/oc\/oc%E5%AD%A6%E4%B9%A0\/","datePublished": "2023-10-22T20:56:21+08:00","dateModified": "2023-10-22T20:56:21+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "leexsh"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about" title=";izzddd"> 关于 </a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about" title=";izzddd">关于</a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">OC学习</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/leexsh" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>leexsh</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/oc/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>OC</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-22">2023-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 6327 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 13 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#import指令">import指令</a></li>
+    <li><a href="#autoreleasepool自动释放池">autoreleasepool:自动释放池</a></li>
+    <li><a href="#编译-cc--c-xxm--------链接-cc-xxo-framework--框架名称---链接成功后即可执行out文件">编译 cc -c XX.m        链接 cc xx.o framework  框架名称   链接成功后即可执行out文件</a></li>
+    <li><a href="#oc的数据类型">OC的数据类型</a></li>
+    <li><a href="#oc完全兼容c语言">OC完全兼容C语言</a></li>
+    <li><a href="#内存和对象">内存和对象</a></li>
+    <li><a href="#nil和null的区别">nil和NULL的区别</a>
+      <ul>
+        <li><a href="#null">NULL</a></li>
+        <li><a href="#nil">nil</a></li>
+        <li><a href="#使用建议">使用建议</a></li>
+      </ul>
+    </li>
+    <li><a href="#编程规范">编程规范</a></li>
+    <li><a href="#异常处理">异常处理</a>
+      <ul>
+        <li><a href="#语法">语法</a></li>
+      </ul>
+    </li>
+    <li><a href="#类方法">类方法</a></li>
+    <li><a href="#匿名对象">匿名对象</a></li>
+    <li><a href="#static关键字">static关键字</a></li>
+    <li><a href="#self--一个指针">self  一个指针</a></li>
+    <li><a href="#继承">继承</a></li>
+    <li><a href="#super关键字">super关键字</a></li>
+    <li><a href="#访问修饰符-默认是protected修饰">访问修饰符 默认是@protected修饰</a></li>
+    <li><a href="#私有方法只写实现-不写声明">私有方法：只写实现 不写声明</a></li>
+    <li><a href="#方法重写--子类重写父类的方法">方法重写  子类重写父类的方法</a></li>
+    <li><a href="#类">类</a></li>
+    <li><a href="#sel">SEL</a></li>
+    <li><a href="#property">@property</a>
+      <ul>
+        <li><a href="#使用方法">使用方法</a></li>
+        <li><a href="#property修饰参数">property修饰参数</a></li>
+      </ul>
+    </li>
+    <li><a href="#synthesize">@synthesize</a></li>
+    <li><a href="#id指针和instancetype">id指针和instancetype</a>
+      <ul>
+        <li><a href="#使用建议-1">使用建议：</a></li>
+        <li><a href="#id和instancetype区别">id和instancetype区别：</a></li>
+      </ul>
+    </li>
+    <li><a href="#动态类型检查">动态类型检查</a></li>
+    <li><a href="#init方法和重写init方法">init方法和重写init方法</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#引用计数器">引用计数器</a></li>
+    <li><a href="#内存管理的分类">内存管理的分类</a></li>
+    <li><a href="#内存管理的原则">内存管理的原则</a></li>
+    <li><a href="#mrc相关操作">MRC相关操作</a></li>
+    <li><a href="#class-类的声明-避免循环引用">@class 类的声明 避免循环引用</a></li>
+    <li><a href="#自动释放池">自动释放池</a></li>
+    <li><a href="#arc自动内存管理-automatic-reference-counting">ARC(自动内存管理 automatic reference counting)</a></li>
+    <li><a href="#非正式协议">非正式协议</a></li>
+    <li><a href="#分类category">分类(category)</a></li>
+    <li><a href="#延展extension">延展Extension</a></li>
+    <li><a href="#_block">_block</a>
+      <ul>
+        <li><a href="#使用">使用</a></li>
+      </ul>
+    </li>
+    <li><a href="#协议protocol接口">协议protocol(接口)</a>
+      <ul>
+        <li><a href="#协议声明">协议声明</a></li>
+        <li><a href="#修饰关键字">修饰关键字</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <ul>
+    <li><a href="#nsstring">NSString</a>
+      <ul>
+        <li><a href="#nsstring常用的方法">NSString常用的方法</a></li>
+        <li><a href="#nsmutablestring">NSMutableString</a></li>
+      </ul>
+    </li>
+    <li><a href="#nsarray">NSArray</a>
+      <ul>
+        <li><a href="#nsarray用法">NSArray用法</a></li>
+        <li><a href="#nsmutablearray">NSMutableArray</a></li>
+      </ul>
+    </li>
+    <li><a href="#nsnumber">NSNumber</a></li>
+    <li><a href="#nsdictionary">NSDictionary</a>
+      <ul>
+        <li><a href="#用法">用法</a></li>
+        <li><a href="#nsmutabledictionary">NSMutableDictionary</a></li>
+      </ul>
+    </li>
+    <li><a href="#nsfilemanager">NSFileManager</a>
+      <ul>
+        <li><a href="#用法-1">用法</a></li>
+      </ul>
+    </li>
+    <li><a href="#nsdate">NSDate</a></li>
+    <li><a href="#copy">copy</a>
+      <ul>
+        <li><a href="#copy应用在nsstring和nsmutablestring">copy应用在NSString和NSMutableString</a></li>
+        <li><a href="#mutablecopy">mutableCopy</a></li>
+        <li><a href="#自定义对象的copy">自定义对象的copy</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><ol>
+<li>
+<h1 id="基础">基础</h1>
+</li>
+<li>
+<h2 id="import指令">import指令</h2>
+</li>
+</ol>
+<ul>
+<li>#import 是 #include的增强  无论import多少次  只会包含一次。</li>
+</ul>
+<ol>
+<li>
+<h2 id="autoreleasepool自动释放池">autoreleasepool:自动释放池</h2>
+</li>
+<li>
+<h2 id="编译-cc--c-xxm--------链接-cc-xxo-framework--框架名称---链接成功后即可执行out文件">编译 cc -c XX.m        链接 cc xx.o framework  框架名称   链接成功后即可执行out文件</h2>
+</li>
+<li>
+<h2 id="oc的数据类型">OC的数据类型</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>OC支持C的所有数据类型  除此之外还新增了一些类型，</p>
+<ul>
+<li>例如BOOL类型  YES NO</li>
+<li>Boolean类型 一般存储条件表达式的结果 成立为true  否则false</li>
+<li>id类型  万能指针</li>
+<li>nil  跟NULL差不多</li>
+<li>SEL  方法选择器</li>
+<li>block 代码段</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="oc完全兼容c语言">OC完全兼容C语言</h2>
+</li>
+</ol>
+<ul>
+<li>OC中可以写任意的C语言代码，OC 支持C的所有运算符  所有的控制语句  所有关键字  同时OC也新增了一些关键字 一般都是用@开头</li>
+</ul>
+<ol>
+<li>
+<h2 id="内存和对象">内存和对象</h2>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="n">Object</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">Object</span> <span class="n">new</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>上述代码进行申请空间，并进行初始化；</p>
+</li>
+<li>
+<p>类首次使用的时候，会进行类加载，将类加载到代码段；</p>
+</li>
+<li>
+<p>没个对象中还有个isa指针，指向了代码段中类的位置，方便调用类的方法。</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="nil和null的区别">nil和NULL的区别</h2>
+</li>
+</ol>
+<ul>
+<li>
+<h3 id="null">NULL</h3>
+<ul>
+<li>NULL可以作为指针变量的值</li>
+<li>NULL等价与0</li>
+</ul>
+</li>
+<li>
+<h3 id="nil">nil</h3>
+<ul>
+<li>只能作为指针变量的值，代表指针变量不指向内存中的任何位置</li>
+<li>nil也等价于0</li>
+</ul>
+</li>
+</ul>
+<p>所以 NULL等价于nil</p>
+<ul>
+<li>
+<h3 id="使用建议">使用建议</h3>
+<ul>
+<li>一般，C的指针用NULL， oc的类指针用nil</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="编程规范">编程规范</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>类中属性名一定要用下划线开头，且不允许声明的时候初始化</p>
+</li>
+<li>
+<p>类名一定大写</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="异常处理">异常处理</h2>
+</li>
+</ol>
+<ul>
+<li>
+<h3 id="语法">语法</h3>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">@try</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@catch</span><span class="p">(</span><span class="n">Exception</span> <span class="o">*</span><span class="n">ex</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">@finally</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>当try某行发生异常，不会继续执行try中的代码，直接转向执行catch的代码；</li>
+<li>catch中的代码只有发生异常的时候才会执行；</li>
+<li>catch中参数Exception可以通过%@打印出异常的值；</li>
+<li>finally都会被执行；</li>
+<li>无法处理C语言的异常。</li>
+</ul>
+<ol>
+<li>
+<h2 id="类方法">类方法</h2>
+</li>
+</ol>
+<ul>
+<li>声明
+<ul>
+<li>使用 + 声明</li>
+</ul>
+</li>
+<li>调用
+<ul>
+<li>不需要创建对象来调用，而是使用类名来调用；</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 类方法调用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="err">类名</span> <span class="err">类方法</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>特点</p>
+<ul>
+<li>节约空间 提高效率</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="匿名对象">匿名对象</h2>
+</li>
+</ol>
+<ul>
+<li>格式</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="p">[</span><span class="err">类名</span> <span class="n">new</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>匿名对象只能使用一次</li>
+</ul>
+<ol>
+<li>
+<h2 id="static关键字">static关键字</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>不能修饰属性和方法</p>
+</li>
+<li>
+<p>可以修饰方法中的局部变量，修饰后，称为静态变量，存在常量区，下次执行会直接使用，而不会再声明</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="self--一个指针">self  一个指针</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>可以用在对象方法和类方法中</p>
+</li>
+<li>
+<p>在对象方法中，self指向当前对象；在类方法中，self指向当前类</p>
+</li>
+<li>
+<p>调用对象/类的方法class，会返回类的地址，[对象 class]</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="继承">继承</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>单继承</p>
+</li>
+<li>
+<p>传递性</p>
+</li>
+<li>
+<p>所有类都继承于NSObject</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="super关键字">super关键字</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>可以用在对象方法和类方法中</p>
+</li>
+<li>
+<p>在对象方法中使用super可以调用从父类继承过来的方法</p>
+</li>
+<li>
+<p>在类方法中，可以使用super调用当前类从父类中继承过来的方法</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="访问修饰符-默认是protected修饰">访问修饰符 默认是@protected修饰</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>@private 私有的  只能在本类中访问</p>
+</li>
+<li>
+<p>@protected 受保护的 只能在本类和本类的子类中访问</p>
+</li>
+<li>
+<p>@package 可以在当前框架中访问</p>
+</li>
+<li>
+<p>@public 公共的</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="私有方法只写实现-不写声明">私有方法：只写实现 不写声明</h2>
+</li>
+<li>
+<h2 id="方法重写--子类重写父类的方法">方法重写  子类重写父类的方法</h2>
+</li>
+<li>
+<h2 id="类">类</h2>
+</li>
+</ol>
+<ul>
+<li>类是以class的形式存储在代码段中，可以通过对象或类的class方法得到类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// c1就是对象o的类   可以通过c1调用该类的类方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">Class</span> <span class="n">c1</span> <span class="o">=</span> <span class="p">[</span><span class="err">对象</span><span class="n">o</span> <span class="k">class</span><span class="p">]</span><span class="err">；</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="sel">SEL</h2>
+</li>
+</ol>
+<ul>
+<li>全称叫 selector选择器，是一个数据类型，也可以说是一个类，</li>
+<li>SEL对象是用来存储一个方法  在类中方法的信息存储在SEL对象中，再将sel对象作为类的属性</li>
+<li>取到存储方法的SEL对象</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 如果方法有参数 方法名写的时候要加：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">SEL</span> <span class="n">sel</span> <span class="o">=</span> <span class="k">@selector</span><span class="p">(</span><span class="err">方法名</span><span class="p">);</span>
+</span></span></code></pre></div><ul>
+<li>调用方法的本质</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 1.先拿到存储say方法的SEL对象，即sel消息
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2.把sel消息发送到c1对象
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 3.根据isa指针在类中找到与sel相对应的方法，如果有，就执行，如果没有就继续在父类中寻找
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="n">c1</span> <span class="n">say</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>想要通过SEL对象调用方法，则如下</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// c1对象通过performSelector方法调用sel对象
+</span></span></span><span class="line"><span class="cl"><span class="c1">// performSelector方法原型： -(id)performSelector : (SEL)aSelector;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="n">c1</span> <span class="nl">performSelector</span> <span class="p">:</span> <span class="n">sel对象</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>可以根据SEL去判断类中是否有某个方法：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 函数原型： - (BOOL)respondsToSelector:(SEL)aSelector;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 判断c1这个对象所在的类中是否有aaa这个方法，有的话返回TRUE 否则FALSE
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">BOOL</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">c1</span> <span class="nl">respondToSelector</span> <span class="p">:</span> <span class="k">@selector</span><span class="p">(</span><span class="n">aaa</span><span class="p">)];</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="property">@property</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>自动生成get和set方法的声明</p>
+</li>
+<li>
+<h3 id="使用方法">使用方法</h3>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"> <span class="c1">// 属性age的get和set方法的声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">@property</span> <span class="kt">int</span> <span class="n">age</span><span class="p">;</span>
+</span></span></code></pre></div><ul>
+<li>
+<h3 id="property修饰参数">property修饰参数</h3>
+<ul>
+<li>与多线程有关的参数
+<ul>
+<li>atomic(默认值) 生成的set方法会有锁，是线程安全的，但效率低</li>
+<li>nontomic 没有线程锁 不安全但是效率高</li>
+</ul>
+</li>
+<li>与生成的set方法相关的参数
+<ul>
+<li>assign(默认值) 生成的set方法是直接赋值</li>
+<li>retain 生成的setter方法是标准的MRC管理方式(所以只能用在MRC模式下)，先判断新旧对象是不是同一个对象，如果不是就先realse 再retain</li>
+<li>使用建议：</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>当属性类型是OC对象类型的时候，大多数使用retain修饰</p>
+<p>当属性类型不是OC对象类型的时候，就可以使用assign修饰</p>
+<ul>
+<li>与读写相关的参数
+<ul>
+<li>readonly 只生成get方法 不生成set方法</li>
+<li>readwrite (默认值) 同时生成set和get方法</li>
+</ul>
+</li>
+<li>与生成的set和get方法相关的参数
+<ul>
+<li>getter</li>
+<li>setter</li>
+</ul>
+</li>
+<li>强弱类型
+<ul>
+<li>strong 强类型(只能用在ARC模式下)</li>
+<li>weak 弱类型 (循环引用的情况下可以考虑)</li>
+<li>使用建议：</li>
+</ul>
+</li>
+</ul>
+<p>ARC机制下，当属性类型是OC对象类型的时候，绝大多数使用strong修饰</p>
+<p>ARC机制下，当属性类型不是OC对象类型的时候，绝大多数使用weak修饰</p>
+<ol>
+<li>
+<h2 id="synthesize">@synthesize</h2>
+</li>
+</ol>
+<ul>
+<li>自动生成get和set方法的实现</li>
+<li>使用方法：</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 属性age的set和get方法实现  在implementation中
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@synthesize</span> <span class="n">age</span><span class="err">；</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="id指针和instancetype">id指针和instancetype</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>id指针是万能指针，类似于(void *)</p>
+</li>
+<li>
+<p>如果方法的返回值是instancetype，那么方法返回的是当前类的对象</p>
+</li>
+<li>
+<h3 id="使用建议-1">使用建议：</h3>
+<ul>
+<li>如果方法是创建当前类的对象，不要写死成类名，而是用[类名 new];</li>
+<li>如果方法的返回值是当前对象，也不要写死，返回值类型应该是instancetype</li>
+</ul>
+</li>
+<li>
+<h3 id="id和instancetype区别">id和instancetype区别：</h3>
+<ul>
+<li>instancetype只能作为函数的返回值，id可以声明指针变量、可以作为参数和返回值</li>
+<li>instancetype是有类型的，代表着当前类的对象，而id是个无类型的指针</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="p">-</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span> <span class="nf">init</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="动态类型检查">动态类型检查</h2>
+</li>
+</ol>
+<ul>
+<li>判断对象中是否有这个方法可以执行</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 函数原型： - (BOOL)respondsToSelector:(SEL)aSelector;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">BOOL</span> <span class="n">b</span> <span class="o">=</span> <span class="p">[</span><span class="n">c1</span> <span class="nl">respondToSelector</span> <span class="p">:</span> <span class="k">@selector</span><span class="p">(</span><span class="n">aaa</span><span class="p">)];</span>
+</span></span></code></pre></div><ul>
+<li>判断指定对象是否为指定类或子类的对象</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 函数原型：- (BOOL)isKindOfClass:(Class)aClass;
+</span></span></span></code></pre></div><ul>
+<li>判断指定对象是否为当前类的对象，不包括子类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">//- (BOOL)isMemberOfClass:(Class)aClass;
+</span></span></span></code></pre></div><ul>
+<li>判断当前类是否为某个类的子类</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// + (BOOL)isSubclassOfClass:(Class)aClass;/+ (BOOL)isSubclassOfClass:(Class)aClass;
+</span></span></span></code></pre></div><ol>
+<li>
+<h2 id="init方法和重写init方法">init方法和重写init方法</h2>
+</li>
+</ol>
+<ul>
+<li>[[class alloc] init]</li>
+<li>可以重写init方法
+<ul>
+<li>重写init方法，必须要先调用父类的init方法</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>调用init失败  失败的话 就会返回nil, 因此要判断父类是否初始化成功</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">if</span> <span class="p">(</span><span class="nb">self</span> <span class="o">=</span> <span class="p">[</span><span class="nb">super</span> <span class="n">init</span><span class="p">])</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 执行操作
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>注意</p>
+<ul>
+<li>自定义init方法返回值必须是instancetype</li>
+<li>自定义init方法的方法名最好用initWith</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h1 id="内存管理和其他">内存管理和其他</h1>
+</li>
+<li>
+<h2 id="引用计数器">引用计数器</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>每个对象都有一个retainCount属性，叫做引用计数器，用来计算有多少人在使用</p>
+</li>
+<li>
+<p>当引用计数器为0的时候，会进行回收</p>
+</li>
+<li>
+<p>每为对象发送一次retain消息，就会使得引用计数器+1</p>
+</li>
+<li>
+<p>当为对象发送一次release时，引用计数器就会-1 而不是直接回收对象，而是当引用计数为0的时候被回收</p>
+</li>
+<li>
+<p>当对象被回收的时候，就会调用dealloc方法</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="内存管理的分类">内存管理的分类</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>ARC(自动内存管理)</p>
+</li>
+<li>
+<p>MRC(手动内存管理)</p>
+<ul>
+<li>使用MRC的时候，在进行dealloc的时候，一定要在最后一行调用[super dealloc]</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="内存管理的原则">内存管理的原则</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>什么时候发送retain消息</p>
+<ul>
+<li>当多一个人使用的时候，先为这个对象发送retain消息</li>
+</ul>
+</li>
+<li>
+<p>什么时候发送release消息</p>
+<ul>
+<li>当少一个人使用的时候，要先发送release消息</li>
+</ul>
+</li>
+<li>
+<p>内存管理原则</p>
+<ul>
+<li>有对象创建，就要有release</li>
+<li>retain和release次数要匹配</li>
+<li>谁要用 谁就retain</li>
+<li>谁不用 谁叫release</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="mrc相关操作">MRC相关操作</h2>
+</li>
+</ol>
+<ul>
+<li>MRC下set方法的形式</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 例子 Car的set方法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span> <span class="nf">setCar</span> <span class="o">:</span> <span class="p">(</span><span class="n">Car</span><span class="o">*</span><span class="p">)</span> <span class="n">car</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">_car</span> <span class="o">!=</span> <span class="n">car</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="p">[</span><span class="n">car</span> <span class="k">release</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="n">_car</span> <span class="o">=</span> <span class="p">[</span><span class="n">car</span> <span class="k">retain</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>还要重写dealloc方法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="o">-</span> <span class="err">（</span><span class="kt">void</span><span class="err">）</span><span class="n">dealloc</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// ...
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">[</span><span class="n">_car</span> <span class="k">release</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">    <span class="p">[</span><span class="nb">super</span> <span class="n">dealloc</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="class-类的声明-避免循环引用">@class 类的声明 避免循环引用</h2>
+</li>
+<li>
+<h2 id="自动释放池">自动释放池</h2>
+</li>
+</ol>
+<ul>
+<li>存入到自动释放池的对象，在自动释放池被销毁的时候，会自动调用释放池中所有对象的release方法，自动释放对象</li>
+<li>自动释放池的创建</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">@autoreleasepool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 自动释放池的范围
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>将对象加入到自动释放池</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 将Person对象p加入到自动释放池
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@autoreleasepool</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">Person</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[[[</span><span class="n">Person</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">]</span> <span class="n">autorelease</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>注意事项
+<ul>
+<li>只有调用对象的autorelease方法后，才会把对象加入到自动释放池</li>
+<li>对象的创建可以放在自动释放池之外，但是要在自动释放池中调用autorelease方法</li>
+<li>自动释放池介绍的时候，只是向对象发送release消息，并不是销毁对象</li>
+<li>对一个对象多次调用autorelease， 在结束的时候，会对对象发送多次autorelease消息</li>
+<li>自动释放池可以嵌套</li>
+<li>将对象放到自动释放池中，并不会使得引用计数器+1</li>
+<li></li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="arc自动内存管理-automatic-reference-counting">ARC(自动内存管理 automatic reference counting)</h2>
+</li>
+</ol>
+<ul>
+<li>ARC是编译机制，在编译的时候编译器会在合适的位置加入retain/release/autorelease</li>
+<li>ARC下对象何时被释放</li>
+</ul>
+<p>只要没有强指针指向对象就会被回收，即引用计数为0</p>
+<ul>
+<li>强指针和弱指针
+<ul>
+<li>默认一个指针就是强指针</li>
+<li>也可以用_strong来显式声明强指针和弱指针</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">__strong</span> <span class="n">Person</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">Person</span> <span class="n">new</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="k">__weak</span> <span class="n">Person</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">Person</span> <span class="n">new</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>区别</li>
+</ul>
+<p>强弱指针 本质没啥区别  只是ARC模式下回收的基准</p>
+<ol>
+<li>
+<h2 id="非正式协议">非正式协议</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>为系统自带的类写分类</p>
+</li>
+<li>
+<p>为存在的类添加方法</p>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="分类category">分类(category)</h2>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">@interface</span> <span class="nc">LiveCore</span><span class="nl">(Interact)</span>
+</span></span><span class="line"><span class="cl"><span class="k">@end</span>
+</span></span></code></pre></div><ul>
+<li>分类使用注意事项
+<ul>
+<li>分类中只能加方法 不能加属性</li>
+<li>分类中可以写@property 但是不会生成getter和setter方法的实现，需要自己去写。</li>
+<li>分类中不可以直接访问本类的私有属性，但是可以调用sette和getter方法</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="延展extension">延展Extension</h2>
+</li>
+</ol>
+<ul>
+<li>是一个特殊的分类</li>
+<li>延展没有名字</li>
+<li>延展只有声明，没有实现，和本类共享实现。</li>
+<li>语法
+<ul>
+<li>类名后面带个括号</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">@interface</span> <span class="nc">LiveCore</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="k">@end</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 没有实现
+</span></span></span></code></pre></div><ul>
+<li>
+<p>分类和延展的区别：</p>
+<ul>
+<li>分类有名字，延展没有名字是个匿名类</li>
+<li>分类只能新增方法，延展都可以新增(方法，属性)</li>
+<li>分类写property，只会生成setter和getter的声明；延展中的property，会生成私有属性，并且生成setter和getter方法的声明和实现，只不过是在本类中生成。</li>
+</ul>
+</li>
+<li>
+<p>什么时候使用延展</p>
+<ul>
+<li>要为类定义私有成员的时候，可以将延展定义在这个类的实现中。</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>
+<h2 id="_block">_block</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>block是种数据类型，专门用来存储某段代码  代码可以有参数和返回值</p>
+</li>
+<li>
+<h3 id="使用">使用</h3>
+<ul>
+<li>block的声明</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"> <span class="c1">// 返回值类型 (^block变量的名称)(参数列表):
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">myBlock1</span><span class="p">)();</span>    <span class="c1">// myBlock1  无参数  无返回值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">myBlock2</span><span class="p">)();</span>
+</span></span><span class="line"><span class="cl"> <span class="kt">int</span> <span class="p">(</span><span class="o">^</span><span class="n">myBlock3</span><span class="p">)(</span><span class="kt">int</span> <span class="n">n1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="p">);</span>
+</span></span></code></pre></div><ul>
+<li>初始化block变量和执行</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 返回值类型(参数列表){
+</span></span></span><span class="line"><span class="cl"><span class="c1">//    代码段；
+</span></span></span><span class="line"><span class="cl"><span class="c1">//}；
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">myBlcok1</span><span class="p">)()</span> <span class="o">=</span> <span class="o">^</span><span class="kt">void</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">myBlcok1</span><span class="p">();</span>
+</span></span></code></pre></div><ul>
+<li>可以用typedef简化block</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">typedef</span> <span class="nf">int</span> <span class="p">(</span><span class="o">^</span><span class="n">NewType</span><span class="p">)(</span><span class="kt">int</span> <span class="n">n1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="n">NewType</span> <span class="n">t1</span> <span class="o">=</span> <span class="o">^</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span> <span class="n">n1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>block内部访问外部变量
+<ul>
+<li>block内可以访问外部的局部变量和全局变量</li>
+<li>在block内部可以修改全局变量，但是不能修改局部变量</li>
+<li>如果希望修改外部的局部变量  需要用__block来修饰这个局部变量</li>
+</ul>
+</li>
+<li>block可以作为参数</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">void</span> <span class="p">(</span><span class="o">^</span><span class="n">block1</span><span class="p">)())</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 无返回值 无参数的block参数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>作为函数返回值</li>
+</ul>
+<ol>
+<li>
+<h2 id="协议protocol接口">协议protocol(接口)</h2>
+</li>
+</ol>
+<ul>
+<li>
+<h3 id="协议声明">协议声明</h3>
+<ul>
+<li>协议只有.h文件  只能声明方法</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="k">@protocol</span> <span class="err">协议名称 &lt;</span><span class="nc">NSObject</span><span class="o">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 方法声明
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@end</span>
+</span></span></code></pre></div><ul>
+<li>
+<p>单继承 多协议</p>
+</li>
+<li>
+<p>协议可以继承协议  并且协议间的继承可以是多继承</p>
+</li>
+<li>
+<h3 id="修饰关键字">修饰关键字</h3>
+<ul>
+<li>@opational</li>
+</ul>
+</li>
+</ul>
+<p>当协议中方法被optional修饰的时候  当一个类继承该接口，就必须实现该协议</p>
+<ul>
+<li>@require(默认)</li>
+</ul>
+<p>当协议中的方法被require修饰的时候 当一个类继承该接口 可选择是否实现</p>
+<ol>
+<li>
+<h1 id="foundation相关">Foundation相关</h1>
+</li>
+<li>
+<h2 id="nsstring">NSString</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>是专门用来存储OC字符串的类，必须使用@</p>
+</li>
+<li>
+<p>NSString 类的成语变量在@perproty最好用copy修饰 此时是浅拷贝</p>
+</li>
+<li>
+<h3 id="nsstring常用的方法">NSString常用的方法</h3>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 将c字符串转换为NSString字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">+</span><span class="nf">stringWithUTF8String:</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="nv">nullTerminatedCString</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 拼接NSString字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">+</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">localizedStringWithFormat:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">format</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// length方法 返回NSUInteger类型 得到字符串长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@property</span> <span class="p">(</span><span class="k">readonly</span><span class="p">)</span> <span class="n">NSUInteger</span> <span class="n">length</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 得到字符串中的指定下标的字符  返回值是unichar
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">unichar</span><span class="p">)</span><span class="nf">characterAtIndex:</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">index</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 判断两个字符串是否相等
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isEqualToString:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">aString</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 比较字符串的大小 NSComparisonResult是个枚举类型  -1 0 1 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSComparisonResult</span><span class="p">)</span><span class="nf">compare:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">string</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">// 判断字符串是否以指定字符串开头
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">hasPrefix:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 判断字符串是否以指定字符串结尾
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">hasSuffix:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">str</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 搜索子串(从前往后)  返回的是NSRange的结构体
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSRange</span><span class="p">)</span><span class="nf">rangeOfString:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">searchString</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">_NSRange</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">NSUInteger</span> <span class="n">location</span><span class="p">;</span> <span class="c1">// 代表子串在主串中出现的下标  如果没有找到 为NSNotFound
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">NSUInteger</span> <span class="n">length</span><span class="p">;</span> <span class="c1">// 代表子串匹配的长度  如果没找到 为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span><span class="n">NSRange</span><span class="p">;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 字符串的截取
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 1.从指定下标截取到最后
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">substringFromIndex:</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">from</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2.从开头截取指定个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">substringToIndex:</span><span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nv">to</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 3.截取某个范围
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">substringWithRange:</span><span class="p">(</span><span class="n">NSRange</span><span class="p">)</span><span class="nv">range</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 字符串替换
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nf">stringByReplacingOccurrencesOfString:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">target</span> <span class="nf">withString:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">replacement</span> <span class="nf">options:</span><span class="p">(</span><span class="n">NSStringCompareOptions</span><span class="p">)</span><span class="nv">options</span> <span class="nf">range:</span><span class="p">(</span><span class="n">NSRange</span><span class="p">)</span><span class="nv">searchRange</span> <span class="n">API_AVAILABLE</span><span class="p">(</span><span class="n">macos</span><span class="p">(</span><span class="mf">10.5</span><span class="p">),</span> <span class="n">ios</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">watchos</span><span class="p">(</span><span class="mf">2.0</span><span class="p">),</span> <span class="n">tvos</span><span class="p">(</span><span class="mf">9.0</span><span class="p">));</span>
+</span></span></code></pre></div><h3 id="nsmutablestring">NSMutableString</h3>
+<ul>
+<li>用法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 1.新建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSMutableString</span> <span class="o">*</span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSMutableString</span> <span class="n">string</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 向NSMutableString中追加字符串
+</span></span></span><span class="line"><span class="cl"><span class="c1">// - (void)appendString:(NSString *)aString;
+</span></span></span><span class="line"><span class="cl"><span class="c1">// - (void)appendFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="n">ns</span> <span class="nl">appendString</span> <span class="p">:</span> <span class="s">@&#34;xxx&#34;</span><span class="p">];</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="nsarray">NSArray</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>OC中的数组 只能存储oc对象 且长度固定  元素无法删除</p>
+</li>
+<li>
+<p>NAArray中存储的数组都是id类型的</p>
+</li>
+<li>
+<h3 id="nsarray用法">NSArray用法</h3>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 创建NSArray数组   数组长度为0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="n">new</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">NSArray</span> <span class="n">alloc</span><span class="p">]</span> <span class="n">init</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="n">NSArray</span> <span class="o">*</span><span class="n">arr3</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="n">array</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建数组并添加一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">+</span> <span class="p">(</span><span class="kt">instancetype</span><span class="p">)</span><span class="nf">arrayWithObject:</span><span class="p">(</span><span class="n">ObjectType</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 创建数组 添加多个NS对象   并用nil进行结尾  表示数组结束
+</span></span></span><span class="line"><span class="cl"><span class="c1">// + (instancetype)arrayWithObjects:(ObjectType)firstObj, ... NS_REQUIRES_NIL_TERMINATION;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">NSArray</span> <span class="o">*</span><span class="n">arr3</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSArray</span> <span class="nl">arrayWithObjects</span><span class="p">:,</span> <span class="nb">nil</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="c1">// 简化创建NS数组的方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">NSArray</span> <span class="n">arr</span> <span class="o">=</span> <span class="l">@[</span><span class="err">对象</span><span class="mi">1</span><span class="p">,</span><span class="err">对象</span><span class="mi">2</span><span class="err">，</span><span class="p">...</span><span class="l">]</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> <span class="c1">// 利用index取出指定下标的元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="o">-</span> <span class="p">(</span><span class="n">ObjectType</span><span class="p">)</span><span class="nl">objectAtIndex</span><span class="p">:(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="n">index</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 获取数组长度
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">@property</span> <span class="p">(</span><span class="k">readonly</span><span class="p">)</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 是否包含某个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nl">containsObject</span><span class="p">:(</span><span class="n">ObjectType</span><span class="p">)</span><span class="n">anObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 第一个元素(优于arr[0] 因为如果数组为空 arr[0]会报错)  和  最后一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="c1">// @property (nullable, nonatomic, readonly) ObjectType firstObject API_AVAILABLE(macos(10.6), ios(4.0), watchos(2.0), tvos(9.0));
+</span></span></span><span class="line"><span class="cl"><span class="c1">// @property (nullable, nonatomic, readonly) ObjectType lastObject;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">arr1</span><span class="p">.</span><span class="n">firstObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 指定元素第一次出现的下标  若没找到就返回NSUInteger的最大值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">NSUInteger</span><span class="p">)</span><span class="nf">indexOfObject:</span><span class="p">(</span><span class="n">ObjectType</span><span class="p">)</span><span class="nv">anObject</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// NSArray遍历
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 1.for 
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 2.增强for for(object in arr)..
+</span></span></span></code></pre></div><ul>
+<li>
+<h3 id="nsmutablearray">NSMutableArray</h3>
+<ul>
+<li>NSMutableArray 元素可以动态改变</li>
+<li>用法</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Groovy" data-lang="Groovy"><span class="line"><span class="cl"><span class="c1">// 用法与NSArray一致
+</span></span></span><span class="line"><span class="cl"><span class="c1">// 向NSMutableArray中添加NSArray对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="o">(</span><span class="kt">void</span><span class="o">)</span><span class="nl">addObjectsFromArray:</span><span class="o">(</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">ObjectType</span><span class="o">&gt;</span> <span class="o">*)</span><span class="n">otherArray</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 指定下标插入元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="o">(</span><span class="kt">void</span><span class="o">)</span><span class="nl">insertObject:</span><span class="o">(</span><span class="n">ObjectType</span><span class="o">)</span><span class="n">anObject</span> <span class="nl">atIndex:</span><span class="o">(</span><span class="n">NSUInteger</span><span class="o">)</span><span class="n">index</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 删除元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="o">(</span><span class="kt">void</span><span class="o">)</span><span class="nl">removeObjectAtIndex:</span><span class="o">(</span><span class="n">NSUInteger</span><span class="o">)</span><span class="n">index</span><span class="o">;</span><span class="c1">// 指定下标
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="o">(</span><span class="kt">void</span><span class="o">)</span><span class="nl">removeObject:</span><span class="o">(</span><span class="n">ObjectType</span><span class="o">)</span><span class="n">anObject</span><span class="o">;</span><span class="c1">// 指定元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="o">(</span><span class="kt">void</span><span class="o">)</span><span class="nl">removeObject:</span><span class="o">(</span><span class="n">ObjectType</span><span class="o">)</span><span class="n">anObject</span> <span class="nl">inRange:</span><span class="o">(</span><span class="n">NSRange</span><span class="o">)</span><span class="n">range</span><span class="o">;</span><span class="c1">// 指定范围
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="o">(</span><span class="kt">void</span><span class="o">)</span><span class="n">removeLastObject</span><span class="o">;</span> <span class="c1">// 最后一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="o">(</span><span class="kt">void</span><span class="o">)</span><span class="n">removeAllObjects</span><span class="o">;</span><span class="c1">// all
+</span></span></span></code></pre></div><ol>
+<li>
+<h2 id="nsnumber">NSNumber</h2>
+</li>
+</ol>
+<ul>
+<li>用来包装基本数据类型</li>
+<li>NSNumber用法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 基本数据类型-&gt;NSNumber对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSNumber</span> <span class="o">*</span><span class="n">n1</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSNumber</span> <span class="nl">numberWithInt</span> <span class="p">:</span> <span class="mi">12</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// NSNumber对象-&gt;基本数据类型
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="n">n1</span><span class="p">.</span><span class="n">intValue</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 转化成NSNumber可以用简写 @
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSNumber</span> <span class="o">*</span><span class="n">n1</span> <span class="o">=</span> <span class="mi">@12</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="n">NSNumber</span> <span class="o">*</span><span class="n">n2</span> <span class="o">=</span> <span class="l">@(</span><span class="n">num</span><span class="l">)</span><span class="p">;</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="nsdictionary">NSDictionary</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>Key-value  理解为map  实为字典数组</p>
+</li>
+<li>
+<p>NSDictionary 无法动态增删</p>
+</li>
+<li>
+<h3 id="用法">用法</h3>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 1.NSDictionary创建
+</span></span></span><span class="line"><span class="cl"><span class="c1">// + (instancetype)dictionaryWithObjectsAndKeys:(id)firstObject, ... NS_REQUIRES_NIL_TERMINATION NS_SWIFT_UNAVAILABLE(&#34;Use dictionary literals instead&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">dict</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDictionary</span> <span class="nl">dictionaryWithObjectsAndKeys</span> <span class="p">:</span> <span class="n">value</span><span class="p">,</span><span class="n">key</span><span class="p">,...,</span> <span class="nb">nil</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 2.简单方式
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSDictionary</span> <span class="o">*</span><span class="n">dict</span> <span class="o">=</span> <span class="l">@{</span><span class="nl">key</span><span class="p">:</span><span class="n">value</span><span class="p">,</span> <span class="nl">key</span><span class="p">:</span><span class="n">value</span><span class="p">....</span><span class="l">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 2.NSDictionary取value值
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">dict</span><span class="p">[</span><span class="s">@&#34;key&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 3.取NSDictionary中key-value的个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">@property</span> <span class="p">(</span><span class="k">readonly</span><span class="p">)</span> <span class="n">NSUInteger</span> <span class="n">count</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 4.遍历NSDictionary  可以用增强for循环
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">for</span> <span class="p">(</span><span class="kt">id</span> <span class="n">item</span> <span class="k">in</span> <span class="n">dict</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// item会得到key  可以通过dict[item]得到value
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>
+<h3 id="nsmutabledictionary">NSMutableDictionary</h3>
+<ul>
+<li>在NSDictionary的基础上，增加了动态增删</li>
+<li>用法：</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// add object
+</span></span></span><span class="line"><span class="cl"><span class="c1">// - (void)setObject:(ObjectType)anObject forKey:(KeyType &lt;NSCopying&gt;)aKey;
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">[</span><span class="n">dict</span> <span class="nl">setObject</span> <span class="p">:</span> <span class="s">@&#34;value&#34;</span> <span class="nl">forKey</span> <span class="p">:</span> <span class="s">@&#34;key&#34;</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// remove
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeAllObjects</span><span class="p">;</span> <span class="c1">// remove all
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">removeObjectsForKeys:</span><span class="p">(</span><span class="n">NSArray</span><span class="o">&lt;</span><span class="n">KeyType</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">keyArray</span><span class="p">;</span> <span class="c1">// 删除某个key-value
+</span></span></span></code></pre></div><ol>
+<li>
+<h2 id="nsfilemanager">NSFileManager</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>用来操作磁盘上的文件或者文件夹</p>
+</li>
+<li>
+<p>NSFileManager是以单例模式创建的</p>
+</li>
+<li>
+<h3 id="用法-1">用法</h3>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 1.NSFileManager对象的创建 单例模式下
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSFileManager</span> <span class="o">*</span><span class="n">fm</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSFileManager</span> <span class="n">defaultManager</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 2.判断文件/文件夹是否存在
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">fileExistsAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 3.判断指定路径是否存在 并且判断是文件路径还是文件夹路径
+</span></span></span><span class="line"><span class="cl"><span class="c1">// isDictionary == YES 文件夹路径k
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">fileExistsAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">path</span> <span class="nf">isDirectory:</span><span class="p">(</span><span class="n">nullable</span> <span class="kt">BOOL</span> <span class="o">*</span><span class="p">)</span><span class="nv">isDirectory</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 4.判断指定文件/文件夹是否可读
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isReadableFileAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 5.判断指定文件/文件夹是否可写
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">iWritableFileAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 6.判断指定文件/文件夹是否可删除
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">isDeletableFileAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 7.获取指定目录下所有的子目录和文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="n">nullable</span> <span class="n">NSArray</span><span class="o">&lt;</span><span class="n">NSString</span> <span class="o">*&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nf">subpathsAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">path</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 8.在指定目录创建文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">createFileAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">path</span> <span class="nf">contents:</span><span class="p">(</span><span class="n">nullable</span> <span class="n">NSData</span> <span class="o">*</span><span class="p">)</span><span class="nv">data</span> <span class="nf">attributes:</span><span class="p">(</span><span class="n">nullable</span> <span class="n">NSDictionary</span><span class="o">&lt;</span><span class="n">NSFileAttributeKey</span><span class="p">,</span> <span class="kt">id</span><span class="o">&gt;</span> <span class="o">*</span><span class="p">)</span><span class="nv">attr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 9.拷贝文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nf">copyItemAtPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">srcPath</span> <span class="nf">toPath:</span><span class="p">(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="nv">dstPath</span> <span class="nf">error:</span><span class="p">(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 10.移动文件 剪切 文件重命名
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nl">moveItemAtPath</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">srcPath</span> <span class="nl">toPath</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">dstPath</span> <span class="nl">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="n">error</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 11.删除文件
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="o">-</span> <span class="p">(</span><span class="kt">BOOL</span><span class="p">)</span><span class="nl">removeItemAtPath</span><span class="p">:(</span><span class="n">NSString</span> <span class="o">*</span><span class="p">)</span><span class="n">path</span> <span class="nl">error</span><span class="p">:(</span><span class="n">NSError</span> <span class="o">**</span><span class="p">)</span><span class="n">error</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="nsdate">NSDate</h2>
+</li>
+</ol>
+<ul>
+<li>时间处理类</li>
+<li>用法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="c1">// 1.创建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">NSDate</span> <span class="o">*</span><span class="n">da</span> <span class="o">=</span> <span class="p">[</span><span class="n">NSDate</span> <span class="n">date</span><span class="p">];</span>
+</span></span></code></pre></div><ol>
+<li>
+<h2 id="copy">copy</h2>
+</li>
+</ol>
+<ul>
+<li>
+<p>定义在NSObject中，用来拷贝对象</p>
+</li>
+<li>
+<p>copy方法内部调用了另一个方法 copyWithZone，copyWithZone定义在NSCoping协议中。</p>
+</li>
+<li>
+<h3 id="copy应用在nsstring和nsmutablestring">copy应用在NSString和NSMutableString</h3>
+<ul>
+<li>NSString
+<ul>
+<li>copy在NSString中发生的是浅拷贝</li>
+</ul>
+</li>
+<li>NSMutableString
+<ul>
+<li>copy在NSMutable中发生的是深拷贝，但是拷贝出来的对象是NSString类型的，不可变字符串。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="mutablecopy">mutableCopy</h3>
+<ul>
+<li>NSString在进行mutableCopy的时候发生的是深拷贝，产生的可变字符串</li>
+<li>NSMutableString在mutableCopy的时候发生的是深拷贝，产生的是可变字符串</li>
+</ul>
+</li>
+<li>
+<h3 id="自定义对象的copy">自定义对象的copy</h3>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="n">Person</span> <span class="o">*</span><span class="n">pp</span> <span class="o">=</span> <span class="p">[</span><span class="n">Person</span> <span class="n">new</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="n">pp</span> <span class="k">copy</span><span class="p">];</span>
+</span></span></code></pre></div><ul>
+<li>如果希望自定义的类具有对象拷贝能力，就要遵守NSCoping协议并实现copyWithZone方法</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Objective-C" data-lang="Objective-C"><span class="line"><span class="cl"><span class="p">-(</span><span class="kt">id</span><span class="p">)</span><span class="nf">copyWithZone</span> <span class="o">:</span> <span class="p">(</span><span class="n">NSZone</span><span class="o">*</span><span class="p">)</span><span class="n">zone</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// codes
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">return</span> <span class="nb">self</span><span class="p">;</span> <span class="c1">// 浅拷贝
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">}</span>
+</span></span></code></pre></div><ul>
+<li>根据实际情况做深浅拷贝</li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-10-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/" data-title="OC学习"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/" data-title="OC学习" data-ralateuid="x"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/" data-title="OC学习"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/baidu.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/oc/">OC</a>,&nbsp;<a href="/tags/%E5%8E%86%E5%8F%B2%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB/">历史文档迁移</a>,&nbsp;<a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/linux/linux%E7%BD%91%E7%BB%9C/" class="prev" rel="prev" title="Linux网络"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Linux网络</a>
+            <a href="/posts/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8Fid/" class="next" rel="next" title="系统设计内容整理(1)-分布式 ID、短链、限流">系统设计内容整理(1)-分布式 ID、短链、限流<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/leexsh" target="_blank">leexsh</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":null,"algoliaIndex":null,"algoliaSearchKey":null,"highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

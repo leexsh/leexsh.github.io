@@ -1,86 +1,72 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>历史文档迁移 on my blogs</title>
-    <link>https://leexsh.github.io/tags/%E5%8E%86%E5%8F%B2%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB/</link>
-    <description>Recent content in 历史文档迁移 on my blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
-    <webMaster>leexsh31@gmail.com (leexsh)</webMaster>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 22 Oct 2023 20:56:21 +0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/%E5%8E%86%E5%8F%B2%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OC学习</title>
-      <link>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Sun, 22 Oct 2023 20:56:21 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</guid>
-      <description>基础 import指令 #import 是 #include的增强 无论import多少次 只会包含一次。 autoreleasepool:自动释放池 编译 cc -c XX.m 链接 cc</description>
-    </item>
-    
-    <item>
-      <title>Linux网络</title>
-      <link>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</link>
-      <pubDate>Sun, 22 Oct 2023 20:45:33 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</guid>
-      <description>1.网络基本知识： 1.数据链路层： 1.数据链路层解决的三个问题： 封装成帧 透明传输 差错检验 数据在网络中传输最大不能超过1500个字节 封装成帧：</description>
-    </item>
-    
-    <item>
-      <title>Linux基础</title>
-      <link>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</link>
-      <pubDate>Sun, 22 Oct 2023 20:29:40 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</guid>
-      <description>4种常见的IO模型： 同步阻塞 同步非堵塞 IO多路复用 异步IO https://www.cnblogs.com/straybirds/p/9479158.html 操作系统四个基本特性：并发 共享 虚拟 异步 1.内存 (1).连续内存分配策略：首次适配</description>
-    </item>
-    
-    <item>
-      <title>Go基础</title>
-      <link>https://leexsh.github.io/posts/go/go%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Sun, 22 Oct 2023 20:27:31 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/go/go%E5%9F%BA%E7%A1%80/</guid>
-      <description>参考文档： Go语言的主要特征 · Go语言中文文档 Learn Go with tests go环境 从零开始搭建Go语言开发环境 - 李文周的博客 标识符和关键字 https://www.liwenzhou.com/posts/Go/01_var_and_const/ Go数据类型 Go语言</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; STL笔记</title>
-      <link>https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sun, 22 Oct 2023 20:19:09 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/</guid>
-      <description>1.STL基本概念 STL(Standard Template Library,标准模板库)，是惠普实验室开发的一系列软件的统称。STL 从广义上分为: 容器(container) 算法(</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; Primer阅读笔记</title>
-      <link>https://leexsh.github.io/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
-      <pubDate>Sun, 22 Oct 2023 20:11:56 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
-      <description>1.const 顶层const：指针本身是个常量 底层const：指针指向是个常量 2.第三章 字符串向量和数组 1.字符串 初始化对象的两个方法：拷贝初始化和直接</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; 基础</title>
-      <link>https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/</link>
-      <pubDate>Sun, 22 Oct 2023 19:51:54 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/</guid>
-      <description>标准输入 cout&amp;laquo; 标准输出 cin&amp;raquo; 换行endl 动态内存分配： 向堆区申请一块空间，并返回一个指向这个空间的指针 //申请一个int类型的空间 int *p = new int; //释放</description>
-    </item>
-    
-    <item>
-      <title>C&#43;&#43; Style Guide</title>
-      <link>https://leexsh.github.io/posts/cpp/cpp_style_guide/</link>
-      <pubDate>Sun, 22 Oct 2023 19:46:59 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/cpp/cpp_style_guide/</guid>
-      <description>C++ Style Guide 参考资料1：Google C++ Style Guide 参考资料2：Google C++ 风格指南（中文版） 参考资料3: The Art of Readable Code</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>历史文档迁移 - 标签 - my blogs</title>
+        <link>https://leexsh.github.io/tags/%E5%8E%86%E5%8F%B2%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB/</link>
+        <description>历史文档迁移 - 标签 - my blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/%E5%8E%86%E5%8F%B2%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB/" rel="self" type="application/rss+xml" /><item>
+    <title>OC学习</title>
+    <link>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[基础 import指令 #import 是 #include的增强 无论import多少次 只会包含一次。 autoreleasepool:自动释放池 编译 cc -c XX.m 链接 cc]]></description>
+</item>
+<item>
+    <title>Linux网络</title>
+    <link>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</link>
+    <pubDate>Sun, 22 Oct 2023 20:45:33 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/linux/linux%E7%BD%91%E7%BB%9C/</guid>
+    <description><![CDATA[1.网络基本知识： 1.数据链路层： 1.数据链路层解决的三个问题： 封装成帧 透明传输 差错检验 数据在网络中传输最大不能超过1500个字节 封装成帧：]]></description>
+</item>
+<item>
+    <title>Linux基础</title>
+    <link>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</link>
+    <pubDate>Sun, 22 Oct 2023 20:29:40 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/linux/linux%E9%AB%98%E7%BA%A7/</guid>
+    <description><![CDATA[4种常见的IO模型： 同步阻塞 同步非堵塞 IO多路复用 异步IO https://www.cnblogs.com/straybirds/p/9479158.html 操作系统四个基本特性：并发 共享 虚拟 异步 1.内存 (1).连续内存分配策略：首次适配]]></description>
+</item>
+<item>
+    <title>Go基础</title>
+    <link>https://leexsh.github.io/posts/go/go%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Sun, 22 Oct 2023 20:27:31 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/go/go%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[参考文档： Go语言的主要特征 · Go语言中文文档 Learn Go with tests go环境 从零开始搭建Go语言开发环境 - 李文周的博客 标识符和关键字 https://www.liwenzhou.com/posts/Go/01_var_and_const/ Go数据类型 Go语言]]></description>
+</item>
+<item>
+    <title>C&#43;&#43; STL笔记</title>
+    <link>https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 22 Oct 2023 20:19:09 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[1.STL基本概念 STL(Standard Template Library,标准模板库)，是惠普实验室开发的一系列软件的统称。STL 从广义上分为: 容器(container) 算法(]]></description>
+</item>
+<item>
+    <title>C&#43;&#43; Primer阅读笔记</title>
+    <link>https://leexsh.github.io/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 22 Oct 2023 20:11:56 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[1.const 顶层const：指针本身是个常量 底层const：指针指向是个常量 2.第三章 字符串向量和数组 1.字符串 初始化对象的两个方法：拷贝初始化和直接]]></description>
+</item>
+<item>
+    <title>C&#43;&#43; 基础</title>
+    <link>https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/</link>
+    <pubDate>Sun, 22 Oct 2023 19:51:54 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/</guid>
+    <description><![CDATA[标准输入 cout&laquo; 标准输出 cin&raquo; 换行endl 动态内存分配： 向堆区申请一块空间，并返回一个指向这个空间的指针 //申请一个int类型的空间 int *p = new int; //释放]]></description>
+</item>
+<item>
+    <title>C&#43;&#43; Style Guide</title>
+    <link>https://leexsh.github.io/posts/cpp/cpp_style_guide/</link>
+    <pubDate>Sun, 22 Oct 2023 19:46:59 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/cpp/cpp_style_guide/</guid>
+    <description><![CDATA[C++ Style Guide 参考资料1：Google C++ Style Guide 参考资料2：Google C++ 风格指南（中文版） 参考资料3: The Art of Readable Code]]></description>
+</item>
+</channel>
 </rss>

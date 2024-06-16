@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>C&#43;&#43; STL笔记 - my blogs</title><meta name="Description" content="Blogger-Programmer-Gopher"><meta property="og:title" content="C&#43;&#43; STL笔记" />
+<meta property="og:description" content="1.STL基本概念 STL(Standard Template Library,标准模板库)，是惠普实验室开发的一系列软件的统称。STL 从广义上分为: 容器(container) 算法(" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/" /><meta property="og:image" content="https://leexsh.github.io/images/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-22T20:19:09+08:00" />
+<meta property="article:modified_time" content="2023-10-22T20:19:09+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://leexsh.github.io/images/avatar.png"/>
+
+<meta name="twitter:title" content="C&#43;&#43; STL笔记"/>
+<meta name="twitter:description" content="1.STL基本概念 STL(Standard Template Library,标准模板库)，是惠普实验室开发的一系列软件的统称。STL 从广义上分为: 容器(container) 算法("/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/" /><link rel="prev" href="https://leexsh.github.io/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" /><link rel="next" href="https://leexsh.github.io/posts/go/go%E5%9F%BA%E7%A1%80/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C++ STL笔记",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/leexsh.github.io\/posts\/cpp\/cppstl%E7%AC%94%E8%AE%B0\/"
+        },"genre": "posts","keywords": "cpp, 历史文档迁移, 技术","wordcount":  7089 ,
+        "url": "https:\/\/leexsh.github.io\/posts\/cpp\/cppstl%E7%AC%94%E8%AE%B0\/","datePublished": "2023-10-22T20:19:09+08:00","dateModified": "2023-10-22T20:19:09+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "leexsh"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about" title=";izzddd"> 关于 </a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about" title=";izzddd">关于</a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">C++ STL笔记</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/leexsh" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>leexsh</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cpp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>cpp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-22">2023-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 7089 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 15 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-特性">1. 特性</a></li>
+    <li><a href="#2api">2.API</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1list容器不仅是一个双向链表而且还是一个循环的双向链表">1.list容器不仅是一个双向链表，而且还是一个循环的双向链表。</a></li>
+    <li><a href="#2常用api">2.常用API</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1特性">1.特性</a></li>
+    <li><a href="#2常用api-1">2.常用API</a></li>
+    <li><a href="#3set中的迭代器">3.set中的迭代器</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1特性-1">1.特性</a></li>
+    <li><a href="#2map的insert操作">2.map的insert操作</a></li>
+    <li><a href="#3map的下标操作">3.map的下标操作</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1介绍">1.介绍</a></li>
+    <li><a href="#2空间配置器实现的原理">2.空间配置器实现的原理：</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#1for_each">1.for_each()</a></li>
+    <li><a href="#2transform">2.transform();</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h1 id="1stl基本概念">1.STL基本概念</h1>
+<p>STL(Standard Template Library,标准模板库)，是惠普实验室开发的一系列软件的统称。STL 从广义上分为: 容器(container) 算法(algorithm) 迭代器(iterator),容器和算法之间通过迭代器进行无缝连接。</p>
+<p>STL提供了六大组件，彼此之间可以组合套用，这六大组件分别是:容器、算法、迭代器、仿函数、适配器（配接器）、空间配置器。</p>
+<p>**容器：**各种数据结构，如vector、list、deque、set、map等,用来存放数据，从实现角度来看，STL容器是一种class template。</p>
+<p>**算法：**各种常用的算法，如sort、find、copy、for_each。从实现的角度来看，STL算法是一种function tempalte。</p>
+<p>**迭代器：*<em>扮演了容器与算法之间的胶合剂，共有五种类型，从实现角度来看，迭代器是一种将operator</em> , operator-&gt; , operator++,operator&ndash;等指针相关操作予以重载的class template. 所有STL容器都附带有自己专属的迭代器，只有容器的设计者才知道如何遍历自己的元素。原生指针(native pointer)也是一种迭代器。</p>
+<p>**仿函数：**行为类似函数，可作为算法的某种策略。从实现角度来看，仿函数是一种重载了operator()的class 或者class template。</p>
+<p>**适配器：**一种用来修饰容器或者仿函数或迭代器接口的东西。如STL提供的queue、stack等，虽然看着像容器，但是容器适配器，他们底层都是利用的deque。</p>
+<p>**空间配置器：**负责空间的配置与管理。从实现角度看，配置器是一个实现了动态空间配置、空间管理、空间释放的class tempalte。</p>
+<p>STL 具有高可重用性，高性能，高移植性，跨平台的优点。
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222022650.jpeg"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222022650.jpeg, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222022650.jpeg 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222022650.jpeg 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222022650.jpeg"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222022650.jpeg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023221.jpeg"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023221.jpeg, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023221.jpeg 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023221.jpeg 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023221.jpeg"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023221.jpeg" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023372.jpeg"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023372.jpeg, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023372.jpeg 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023372.jpeg 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023372.jpeg"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023372.jpeg" /></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"> <span class="c1">//这段代码可以将链表中内容拷贝到容器中去
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="n">list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#34;RNG&#34;</span><span class="p">,</span> <span class="s">&#34;IG&#34;</span><span class="p">,</span><span class="s">&#34;WE&#34;</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"> <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">vc</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"> <span class="n">vc</span><span class="p">.</span><span class="nf">assign</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">begin</span><span class="p">(),</span> <span class="n">s</span><span class="p">.</span><span class="nf">end</span><span class="p">());</span>
+</span></span></code></pre></div><p>使用[]和使用.at()访问容器中的元素的区别：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023330.jpeg"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023330.jpeg, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023330.jpeg 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023330.jpeg 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023330.jpeg"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023330.jpeg" /></p>
+<p>顺序容器的删除操作：</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023129.jpeg"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023129.jpeg, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023129.jpeg 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023129.jpeg 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023129.jpeg"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222023129.jpeg" /></p>
+<h1 id="2vector容器">2.vector容器</h1>
+<p>vector的数据安排以及操作方式，与array非常相似，两者的唯一差别在于空间的运用的灵活性。Array是静态空间，一旦配置了就不能改变，要换大一点或者小一点的空间，可以，一切琐碎得由自己来，首先配置一块新的空间，然后将旧空间的数据搬往新空间，再释放原来的空间。Vector是动态空间，随着元素的加入，它的内部机制会自动扩充空间以容纳新元素。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//重新指定容器的长度为num，若容器变长，
+</span></span></span><span class="line"><span class="cl"><span class="c1">//则以默认值填充新位置。如果容器变短，则末尾超出容器长度的元素被删除。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//重新指定容器的长度为num，若容器变长，
+</span></span></span><span class="line"><span class="cl"><span class="c1">//则以elem值填充新位置。如果容器变短，则末尾超出容器长&gt;度的元素被删除。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="n">elem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">capacity</span><span class="p">();</span><span class="c1">//容器的容量
+</span></span></span><span class="line"><span class="cl"><span class="c1">//容器预留len个元素长度，预留位置不初始化，元素不可访问。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">reserve</span><span class="p">(</span><span class="kt">int</span> <span class="n">len</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//重新指定容器的长度为num，若容器变长，则以elem值填充新位置。
+</span></span></span><span class="line"><span class="cl"><span class="c1">//如果容器变短，则末尾超出容器长&gt;度的元素被删除。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="n">elem</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="nf">capacity</span><span class="p">();</span><span class="c1">//容器的容量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">reserve</span><span class="p">(</span><span class="kt">int</span> <span class="n">len</span><span class="p">);</span><span class="c1">//容器预留len个元素长度，预留位置不初始化，元素不可访问。
+</span></span></span></code></pre></div><h1 id="3deque容器">3.deque容器</h1>
+<h2 id="1-特性">1. 特性</h2>
+<p>Vector容器是单向开口的连续内存空间，deque则是一种双向开口的连续线性空间。所谓的双向开口，意思是可以在头尾两端分别做元素的插入和删除操作。</p>
+<p>Deque容器和vector容器最大的差异，一在于deque允许使用常数项时间对头端进行元素的插入和删除操作。二在于deque没有容量的概念，因为它是动态的以分段连续空间组合而成，随时可以增加一段新的空间并链接起来。</p>
+<h2 id="2api">2.API</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">push_back</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span><span class="c1">//在容器尾部添加一个数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">push_front</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span><span class="c1">//在容器头部插入一个数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop_back</span><span class="p">();</span><span class="c1">//删除容器最后一个数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop_front</span><span class="p">();</span><span class="c1">//删除容器第一个数据
+</span></span></span></code></pre></div><h1 id="4stack容器">4.stack容器</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">push</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span><span class="c1">//向栈顶添加元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop</span><span class="p">();</span><span class="c1">//从栈顶移除第一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">top</span><span class="p">();</span><span class="c1">//返回栈顶元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">empty</span><span class="p">();</span><span class="c1">//判断堆栈是否为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">size</span><span class="p">();</span><span class="c1">//返回堆栈的大小
+</span></span></span></code></pre></div><h1 id="5queue容器">5.queue容器</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">push</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span><span class="c1">//往队尾添加元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop</span><span class="p">();</span><span class="c1">//从队头移除第一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">back</span><span class="p">();</span><span class="c1">//返回最后一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">front</span><span class="p">();</span><span class="c1">//返回第一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">empty</span><span class="p">();</span><span class="c1">//判断队列是否为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">size</span><span class="p">();</span><span class="c1">//返回队列的大小
+</span></span></span></code></pre></div><h1 id="6list双向链表">6.list(双向链表)</h1>
+<h2 id="1list容器不仅是一个双向链表而且还是一个循环的双向链表">1.list容器不仅是一个双向链表，而且还是一个循环的双向链表。</h2>
+<h2 id="2常用api">2.常用API</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">push_back</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span><span class="c1">//在容器尾部加入一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop_back</span><span class="p">();</span><span class="c1">//删除容器中最后一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">push_front</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span><span class="c1">//在容器开头插入一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">pop_front</span><span class="p">();</span><span class="c1">//从容器开头移除第一个元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">insert</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="n">elem</span><span class="p">);</span><span class="c1">//在pos位置插elem元素的拷贝，返回新数据的位置。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">insert</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">elem</span><span class="p">);</span><span class="c1">//在pos位置插入n个elem数据，无返回值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">insert</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span><span class="n">beg</span><span class="p">,</span><span class="n">end</span><span class="p">);</span><span class="c1">//在pos位置插入[beg,end)区间的数据，无返回值。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">clear</span><span class="p">();</span><span class="c1">//移除容器的所有数据
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">erase</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span><span class="n">end</span><span class="p">);</span><span class="c1">//删除[beg,end)区间的数据，返回下一个数据的位置。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">erase</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span><span class="c1">//删除pos位置的数据，返回下一个数据的位置。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">remove</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span><span class="c1">//删除容器中所有与elem值匹配的元素。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">size</span><span class="p">();</span><span class="c1">//返回容器中元素的个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">empty</span><span class="p">();</span><span class="c1">//判断容器是否为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">assign</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">);</span><span class="c1">//将[beg, end)区间中的数据拷贝赋值给本身。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">assign</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">elem</span><span class="p">);</span><span class="c1">//将n个elem拷贝赋值给本身。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">swap</span><span class="p">(</span><span class="n">lst</span><span class="p">);</span><span class="c1">//将lst与本身的元素互换。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">front</span><span class="p">();</span><span class="c1">//返回第一个元素。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">back</span><span class="p">();</span><span class="c1">//返回最后一个元素。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">reverse</span><span class="p">();</span><span class="c1">//反转链表，比如lst包含1,3,5元素，运行此方法后，lst就包含5,3,1元素。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">sort</span><span class="p">();</span> <span class="c1">//list排序
+</span></span></span></code></pre></div><h1 id="7set和multiset">7.set和multiset</h1>
+<h2 id="1特性">1.特性</h2>
+<p>Set的特性是所有元素都会根据元素的键值自动被排序，因此set是有序且无重复的。multiset特性及用法和set完全相同，唯一的差别在于它允许键值重复，因此mulityset是有序而且允许重复的。set和multiset的底层实现是红黑树。</p>
+<p>set容器的迭代器是const修饰的。可以利用迭代器来读取set容器中元素的值，但是不能修改。</p>
+<h2 id="2常用api-1">2.常用API</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">set</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">st</span><span class="p">;</span><span class="c1">//set默认构造函数：
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">mulitset</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">mst</span><span class="p">;</span> <span class="c1">//multiset默认构造函数:
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">swap</span><span class="p">(</span><span class="n">st</span><span class="p">);</span><span class="c1">//交换两个集合容器
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">size</span><span class="p">();</span><span class="c1">//返回容器中元素的数目
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">empty</span><span class="p">();</span><span class="c1">//判断容器是否为空
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="c1">//查找键key是否存在,若存在，返回该键的元素的迭代器；若不存在，返回set.end();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">count</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="c1">//查找键key的元素个数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">lower_bound</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//返回第一个key&gt;=keyElem元素的迭代器。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">upper_bound</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//返回第一个key&gt;keyElem元素的迭代器。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">equal_range</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//返回容器中key与keyElem相等的上下限的两个迭代器。
+</span></span></span></code></pre></div><h2 id="3set中的迭代器">3.set中的迭代器</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024479.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024479.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024479.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024479.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024479.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024479.png" /></p>
+<h1 id="8对组pair">8.对组pair</h1>
+<p>对组(pair)将一对值组合成一个值，这一对值可以具有不同的数据类型，两个值可以分别用pair的两个公有属性first和second访问。类模板：template</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// pair的两种创建
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pa</span><span class="p">{</span><span class="s">&#34;小明&#34;</span><span class="p">,</span><span class="mi">18</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">pa</span> <span class="o">=</span> <span class="nf">make_pair</span><span class="p">(</span><span class="s">&#34;小华&#34;</span><span class="p">,</span><span class="mi">13</span><span class="p">);</span>
+</span></span></code></pre></div><p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024326.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024326.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024326.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024326.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024326.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222024326.png" /></p>
+<h1 id="8map">8.map</h1>
+<h2 id="1特性-1">1.特性</h2>
+<p>Map的特性是，所有元素都会根据元素的键值自动排序。Map所有的元素都是pair,同时拥有实值和键值，pair的第一元素被视为键值，第二元素被视为实值，map不允许两个元素有相同的键值。Multimap和map的操作类似，唯一区别multimap键值可重复。</p>
+<p>对于map容器，他得first成员是const修饰的，不能修改，second成员是可以修改的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"> <span class="c1">// 第一种 通过pair的方式插入对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">mapStu</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s">&#34;小张&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 第二种 通过pair的方式插入对象 推荐用法
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">mapStu</span><span class="p">.</span><span class="nf">inset</span><span class="p">(</span><span class="nf">make_pair</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#34;校长&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 第三种 通过value_type的方式插入对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">mapStu</span><span class="p">.</span><span class="nf">insert</span><span class="p">(</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">string</span><span class="o">&gt;::</span><span class="nf">value_type</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#34;小李&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl"><span class="nf">clear</span><span class="p">();</span><span class="c1">//删除所有元素
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">erase</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span><span class="c1">//删除pos迭代器所指的元素，返回下一个元素的迭代器。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">erase</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span><span class="n">end</span><span class="p">);</span><span class="c1">//删除区间[beg,end)的所有元素 ，返回下一个元素的迭代器。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">erase</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//删除容器中key为keyElem的对组。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">find</span><span class="p">(</span><span class="n">key</span><span class="p">);</span><span class="c1">//查找键key是否存在,若存在，返回该键的元素的迭代器；/若不存在，返回map.end();
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">count</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//返回容器中key为keyElem的对组个数。对map来说，要么是0，要么是1。对multimap来说，值可能大于1。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">lower_bound</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//返回第一个key&gt;=keyElem元素的迭代器。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">upper_bound</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//返回第一个key&gt;keyElem元素的迭代器。
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">equal_range</span><span class="p">(</span><span class="n">keyElem</span><span class="p">);</span><span class="c1">//返回容器中key与keyElem相等的上下限的两个迭代器。
+</span></span></span></code></pre></div><h2 id="2map的insert操作">2.map的insert操作</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025973.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025973.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025973.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025973.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025973.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025973.png" /></p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025644.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025644.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025644.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025644.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025644.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025644.png" /></p>
+<h2 id="3map的下标操作">3.map的下标操作</h2>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025013.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025013.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025013.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025013.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025013.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222025013.png" /></p>
+<h1 id="9内建函数对象">9.内建函数对象</h1>
+<p>STL内建了一些函数对象。分为:算数类函数对象,关系运算类函数对象，逻辑运算类仿函数。这些仿函数所产生的对象，用法和一般函数完全相同，当然我们还可以产生无名的临时对象来履行函数功能。使用内建函数对象，需要引入头文件 #include。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">plus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//加法仿函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">minus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//减法仿函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">multiplies</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//乘法仿函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">divides</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//除法仿函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">modulus</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//取模仿函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">T</span> <span class="n">negate</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//取反仿函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">equal_to</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//等于
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">not_equal_to</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//不等于
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">greater</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//大于
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">greater_equal</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//大于等于
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//小于
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">less_equal</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//小于等于
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">logical_and</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//逻辑与
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">logical_or</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//逻辑或
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">template</span><span class="o">&lt;</span><span class="n">class</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">bool</span> <span class="n">logical_not</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="c1">//逻辑非
+</span></span></span></code></pre></div><h1 id="10适配器">10.适配器</h1>
+<p>c++11 适配器改版了 详细见 C++ primer P354</p>
+<p>采用了占位符，需要打开命名空间placeholders。使用的bind()函数。</p>
+<p><a href="https://blog.csdn.net/weixin_43333380/article/details/82935291" target="_blank" rel="noopener noreffer ">c++11随记：std::bind及 std::placeholders</a></p>
+<h1 id="11空间配置器">11.空间配置器</h1>
+<h2 id="1介绍">1.介绍</h2>
+<p><a href="https://blog.csdn.net/qq_40421919/article/details/89192383" target="_blank" rel="noopener noreffer ">https://blog.csdn.net/qq_40421919/article/details/89192383</a></p>
+<p>STL的操作对象（所有的数值）都存放在容器之内，而容器一定需要配置空间以置放资料。</p>
+<ul>
+<li>
+<p>标准的空间配置器：std::allocator，在SGI中，因为效率低，一般不建议使用。只是对基层内存配置/释放行为::operator new和::operator delete做了薄薄的包装</p>
+</li>
+<li>
+<p>特殊的空间配置器：std:alloc</p>
+</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">Foo</span><span class="o">*</span> <span class="n">pf</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Foo</span><span class="p">;</span> <span class="c1">//配置内存，然后建构对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">delete</span> <span class="n">pf</span><span class="p">;</span>  <span class="c1">//将对象解构，然后释放内存
+</span></span></span></code></pre></div><p>​       这其中的  new 算式内含两阶段动作 ：(1)呼叫 ::operator new 配置内存，(2)呼叫 Foo::Foo() 建构对象内容。 delete 算式也内含两阶段动作： (1)呼叫Foo::~Foo() 将对象解构，(2)呼叫 ::operator delete 释放内存。、</p>
+<p>为了精密分工，STL allocator 决定将这两阶段动作区分开来。内存配置动作由 alloc:allocate() 负责，内存释放动作由 alloc::deallocate() 负责；对象建构动作由 ::construct() 负责，对象解构动作由 ::destroy() 负责。</p>
+<p>分别在</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stl_alloc.h&gt;//负责内存空间的配置与释放</span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&lt;stl_construct.h&gt;//负责对象内容的建构与解构</span><span class="cp">
+</span></span></span></code></pre></div><p>​https://blog.csdn.net/u014209688/article/details/90047713 new (p) T1(value) ;的一个解释</p>
+<h2 id="2空间配置器实现的原理">2.空间配置器实现的原理：</h2>
+<p>​ 考虑小型区块所可能造成的内存破碎问题，SGI 设计了双层级配置器，第一级配置器直接使用  malloc() 和 free() ，第二级配置器则视情况采用不同的策略：当配置区块超过128bytes，视之为「足够大」，便呼叫第一级配置器；当配置区块小于 128bytes，视之为「过小」，为了降低额外负担，便采用复杂的memory pool整理方式，而不再求助于第一级配置器。</p>
+<p>memory pool(记忆池)：每次配置一大块内存，并维护对应之自由链表（free-list）。下次若再有相同大小的内存需求，就直接从free-lists中拨出。如果客端释放小额区块，就由配置器回收到free-lists中—是的，别忘了，配置器除了负责配置，也负责回收。为了方便管理，SGI第二级配置器会主动将任何小额区块的内存需求量上调至8的倍数（例如客端要求 30 bytes，就自动调整为 32bytes），并维护 16 个 free-lists，各自管理大小分别为 8, 16, 24, 32, 40, 48, 56, 64, 72,80, 88, 96, 104, 112, 120, 128 bytes的小额区块。</p>
+<h1 id="12迭代器">12.迭代器</h1>
+<ul>
+<li>迭代器是一种类似指针的东西。</li>
+<li>迭代器对应的类别：</li>
+</ul>
+<p>(1).value type：迭代器所指向对象的类别</p>
+<p>(2).difference type：表示两个迭代器之间的距离，也可以表示一个容器的最大容量，也就是头尾距离。</p>
+<p>(3).reference type：</p>
+<p>(4).pointer type：</p>
+<p>(5).iterator_category</p>
+<h1 id="13常用的遍历算法">13.常用的遍历算法</h1>
+<h2 id="1for_each">1.for_each()</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">for_each</span><span class="p">(</span><span class="n">param</span> <span class="n">beg</span><span class="p">,</span> <span class="n">param</span> <span class="n">end</span><span class="p">,</span><span class="n">param</span> <span class="n">callback</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param callback  函数回调或者函数对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return 函数对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></div><h2 id="2transform">2.transform();</h2>
+<p>注意：transform()不会给目标容器自动分配内存，需要我们提前分配好。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">transform算法</span> <span class="err">将指定容器区间元素搬运到另一容器中</span>
+</span></span><span class="line"><span class="cl"><span class="nf">transform</span><span class="p">(</span><span class="n">param</span> <span class="n">beg1</span><span class="p">,</span><span class="n">param</span> <span class="n">end1</span><span class="p">,</span><span class="n">param</span> <span class="n">neg2</span><span class="p">,</span><span class="n">param</span> <span class="n">callback</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg1 原容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end2 原容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg2 拷贝容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param callback  函数回调或者函数对象
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></div><h1 id="13常用的查找算法">13.常用的查找算法</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">find</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    查找自定义对象，需要在类中重载==运算符。
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param value 查找的元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return 返回查找元素的位置的一个迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">find_if</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">_callback</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    find_if算法 条件查找
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param  callback 回调函数或者谓词(返回bool类型的函数对象)
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return bool 查找返回true 否则false
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjacent_find</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">_callback</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    adjacent_find算法 查找相邻重复元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param  _callback 回调函数或者谓词(返回bool类型的函数对象)
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return 返回相邻元素的第一个位置的迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kt">bool</span> <span class="nf">binary_search</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    binary_search算法 二分查找法
+</span></span></span><span class="line"><span class="cl"><span class="cm">    注意: 在无序序列中不可用
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param value 查找的元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return bool 查找返回true 否则false
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">count</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    count算法 统计元素出现次数
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param  value回调函数或者谓词(返回bool类型的函数对象)
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return int返回元素个数
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">count_if</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">_callback</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    count算法 统计元素出现次数
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param  callback 回调函数或者谓词(返回bool类型的函数对象)
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return int返回元素个数
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></div><h1 id="14常用的排序算法">14.常用的排序算法</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">merge</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">beg2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">dest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    merge算法 容器元素合并，并存储到另一容器中
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg1 容器1开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end1 容器1结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg2 容器2开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end2 容器2结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param dest  目标容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sort</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">_callback</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    sort算法 容器元素排序
+</span></span></span><span class="line"><span class="cl"><span class="cm">    注意:两个容器必须是有序的
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器1开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器1结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param _callback 回调函数或者谓词(返回bool类型的函数对象)
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">reverse</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    reverse算法 反转指定范围的元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="mf">15.</span><span class="err">常用的拷贝算法</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nf">copy</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">dest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    copy算法 将容器内指定范围的元素拷贝到另一容器中
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param dest 目标起始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">replace</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">oldvalue</span><span class="p">,</span> <span class="n">newvalue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    replace算法 将容器内指定范围的旧元素修改为新元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param oldvalue 旧元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param oldvalue 新元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">replace_if</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">_callback</span><span class="p">,</span> <span class="n">newvalue</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    replace_if算法 将容器内指定范围满足条件的元素替换为新元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param callback函数回调或者谓词(返回Bool类型的函数对象)
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param oldvalue 新元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">swap</span><span class="p">(</span><span class="n">container</span> <span class="n">c1</span><span class="p">,</span> <span class="n">container</span> <span class="n">c2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    swap算法 互换两个容器的元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param c1容器1
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param c2容器2
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">accumulate</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    accumulate算法 计算容器元素累计总和
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param value累加值
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">fill</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    fill算法 向容器中添加元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg 容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end 容器结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param value t填充元素
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></div><h1 id="16常用的集合算法">16.常用的集合算法</h1>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">set_intersection</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">beg2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">dest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    set_intersection算法 求两个set集合的交集
+</span></span></span><span class="line"><span class="cl"><span class="cm">    注意:两个集合必须是有序序列
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg1 容器1开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end1 容器1结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg2 容器2开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end2 容器2结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param dest  目标容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return 目标容器的最后一个元素的迭代器地址
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">set_union</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">beg2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">dest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    set_union算法 求两个set集合的并集
+</span></span></span><span class="line"><span class="cl"><span class="cm">    注意:两个集合必须是有序序列
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg1 容器1开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end1 容器1结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg2 容器2开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end2 容器2结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param dest  目标容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return 目标容器的最后一个元素的迭代器地址
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="nf">set_difference</span><span class="p">(</span><span class="n">iterator</span> <span class="n">beg1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end1</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">beg2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">end2</span><span class="p">,</span> <span class="n">iterator</span> <span class="n">dest</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">    set_difference算法 求两个set集合的差集
+</span></span></span><span class="line"><span class="cl"><span class="cm">    注意:两个集合必须是有序序列
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg1 容器1开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end1 容器1结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param beg2 容器2开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param end2 容器2结束迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @param dest  目标容器开始迭代器
+</span></span></span><span class="line"><span class="cl"><span class="cm">    @return 目标容器的最后一个元素的迭代器地址
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span></code></pre></div><p>​</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-10-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/" data-title="C&#43;&#43; STL笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/" data-title="C&#43;&#43; STL笔记" data-ralateuid="x"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://leexsh.github.io/posts/cpp/cppstl%E7%AC%94%E8%AE%B0/" data-title="C&#43;&#43; STL笔记"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/baidu.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cpp/">cpp</a>,&nbsp;<a href="/tags/%E5%8E%86%E5%8F%B2%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB/">历史文档迁移</a>,&nbsp;<a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="prev" rel="prev" title="C&#43;&#43; Primer阅读笔记"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>C++ Primer阅读笔记</a>
+            <a href="/posts/go/go%E5%9F%BA%E7%A1%80/" class="next" rel="next" title="Go基础">Go基础<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/leexsh" target="_blank">leexsh</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":null,"algoliaIndex":null,"algoliaSearchKey":null,"highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

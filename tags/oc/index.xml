@@ -1,23 +1,16 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>OC on my blogs</title>
-    <link>https://leexsh.github.io/tags/oc/</link>
-    <description>Recent content in OC on my blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
-    <webMaster>leexsh31@gmail.com (leexsh)</webMaster>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 22 Oct 2023 20:56:21 +0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/oc/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>OC学习</title>
-      <link>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</link>
-      <pubDate>Sun, 22 Oct 2023 20:56:21 +0800</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</guid>
-      <description>基础 import指令 #import 是 #include的增强 无论import多少次 只会包含一次。 autoreleasepool:自动释放池 编译 cc -c XX.m 链接 cc</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>OC - 标签 - my blogs</title>
+        <link>https://leexsh.github.io/tags/oc/</link>
+        <description>OC - 标签 - my blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/tags/oc/" rel="self" type="application/rss+xml" /><item>
+    <title>OC学习</title>
+    <link>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</link>
+    <pubDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/posts/oc/oc%E5%AD%A6%E4%B9%A0/</guid>
+    <description><![CDATA[基础 import指令 #import 是 #include的增强 无论import多少次 只会包含一次。 autoreleasepool:自动释放池 编译 cc -c XX.m 链接 cc]]></description>
+</item>
+</channel>
 </rss>

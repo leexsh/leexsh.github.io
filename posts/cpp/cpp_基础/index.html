@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>C&#43;&#43; 基础 - my blogs</title><meta name="Description" content="Blogger-Programmer-Gopher"><meta property="og:title" content="C&#43;&#43; 基础" />
+<meta property="og:description" content="标准输入 cout&laquo; 标准输出 cin&raquo; 换行endl 动态内存分配： 向堆区申请一块空间，并返回一个指向这个空间的指针 //申请一个int类型的空间 int *p = new int; //释放" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/" /><meta property="og:image" content="https://leexsh.github.io/images/avatar.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-10-22T19:51:54+08:00" />
+<meta property="article:modified_time" content="2023-10-22T19:51:54+08:00" /><meta property="og:site_name" content="我的网站" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://leexsh.github.io/images/avatar.png"/>
+
+<meta name="twitter:title" content="C&#43;&#43; 基础"/>
+<meta name="twitter:description" content="标准输入 cout&laquo; 标准输出 cin&raquo; 换行endl 动态内存分配： 向堆区申请一块空间，并返回一个指向这个空间的指针 //申请一个int类型的空间 int *p = new int; //释放"/>
+<meta name="application-name" content="我的网站">
+<meta name="apple-mobile-web-app-title" content="我的网站"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/" /><link rel="prev" href="https://leexsh.github.io/posts/cpp/cpp_style_guide/" /><link rel="next" href="https://leexsh.github.io/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "C++ 基础",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/leexsh.github.io\/posts\/cpp\/cpp_%E5%9F%BA%E7%A1%80\/"
+        },"genre": "posts","keywords": "cpp, 历史文档迁移, 技术","wordcount":  4752 ,
+        "url": "https:\/\/leexsh.github.io\/posts\/cpp\/cpp_%E5%9F%BA%E7%A1%80\/","datePublished": "2023-10-22T19:51:54+08:00","dateModified": "2023-10-22T19:51:54+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "leexsh"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about" title=";izzddd"> 关于 </a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="my blogs"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw' aria-hidden='true'></i></span>leexsh</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about" title=";izzddd">关于</a><a class="menu-item" href="https://github.com/leexsh" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw' aria-hidden='true'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><div class="search-dropdown desktop">
+        <div id="search-dropdown-desktop"></div>
+    </div>
+    <div class="search-dropdown mobile">
+        <div id="search-dropdown-mobile"></div>
+    </div><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">C++ 基础</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://github.com/leexsh" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>leexsh</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/cpp/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>cpp</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2023-10-22">2023-10-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;约 4752 字&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;预计阅读 10 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="true">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#标准输入-cout-标准输出-cin--换行endl">标准输入 cout&laquo; 标准输出 cin&raquo;  换行endl</a></li>
+    <li><a href="#动态内存分配">动态内存分配：</a></li>
+    <li><a href="#智能指针">智能指针</a></li>
+    <li><a href="#函数重载">函数重载</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#重载的原理">重载的原理：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#缺省函数参数">缺省函数参数</a></li>
+    <li><a href="#引用">引用：</a></li>
+    <li><a href="#类">类：</a>
+      <ul>
+        <li><a href="#构造和析构">构造和析构：</a></li>
+        <li><a href="#深拷贝和浅拷贝">深拷贝和浅拷贝：</a></li>
+      </ul>
+    </li>
+    <li><a href="#初始化列表">初始化列表：</a></li>
+    <li><a href="#类对象作为成员">类对象作为成员：</a></li>
+    <li><a href="#静态成员变量和静态成员函数">静态成员变量和静态成员函数：</a></li>
+    <li><a href="#this指针">this指针</a></li>
+    <li><a href="#const">const：</a>
+      <ul>
+        <li><a href="#const分配内存情况">const分配内存情况：</a></li>
+        <li><a href="#常函数和常对象">常函数和常对象</a></li>
+      </ul>
+    </li>
+    <li><a href="#单例模式">单例模式</a></li>
+    <li><a href="#友元">友元</a></li>
+    <li><a href="#继承">继承</a>
+      <ul>
+        <li><a href="#三种继承方式">三种继承方式：</a></li>
+        <li><a href="#继承中的构造和析构">继承中的构造和析构</a></li>
+        <li><a href="#多继承">多继承</a></li>
+      </ul>
+    </li>
+    <li><a href="#虚基类">虚基类</a></li>
+    <li><a href="#多态">多态</a>
+      <ul>
+        <li><a href="#含义">含义：</a></li>
+        <li><a href="#virtual用法">virtual用法：</a></li>
+        <li><a href="#纯虚函数">纯虚函数</a></li>
+        <li><a href="#虚析构和纯虚析构">虚析构和纯虚析构</a></li>
+      </ul>
+    </li>
+    <li><a href="#两个类的头文件互相包含的问题">两个类的头文件互相包含的问题</a></li>
+    <li><a href="#运算符重载">运算符重载</a></li>
+    <li><a href="#模板">模板</a></li>
+    <li><a href="#智能指针-1">智能指针</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="标准输入-cout-标准输出-cin--换行endl">标准输入 cout&laquo; 标准输出 cin&raquo;  换行endl</h2>
+<h2 id="动态内存分配">动态内存分配：</h2>
+<p>向堆区申请一块空间，并返回一个指向这个空间的指针</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//申请一个int类型的空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//释放空间
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">delete</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//申请一个整型的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//首元素是整型的，因此声明一个整型的指针指向他
+</span></span></span><span class="line"><span class="cl"><span class="c1">//释放的时候 前面要加[]
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">delete</span><span class="p">[]</span> <span class="n">p</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//申请一个二维数组int[2][5] 首元素是个长度为5的一维数组 声明一个长度为5的指针数组
+</span></span></span><span class="line"><span class="cl"><span class="c1">//来保存
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">p</span><span class="p">)[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="n">new</span> <span class="kt">int</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">5</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//释放
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">delete</span><span class="p">[]</span> <span class="n">p</span><span class="p">;</span>
+</span></span></code></pre></div><h2 id="智能指针">智能指针</h2>
+<p>为了更加安全的使用使用动态内存，c++11定一个两种智能指针，他们包含在memory的头文件中，分别是shared_ptr和unique_ptr。shared_ptr允许多个指针指向一个对象，而unique_ptr只能自己指向一个对象。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310221957972.jpeg"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310221957972.jpeg, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310221957972.jpeg 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310221957972.jpeg 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310221957972.jpeg"
+        title="调用关系图" /></p>
+<ol>
+<li>
+<h2 id="函数重载">函数重载</h2>
+</li>
+</ol>
+<p>是指函数的方法名相同，参数不同，根据不同的参数选择调用不同的函数。函数名相同 参数长度不同 参数类型不同 参数顺序不同 返回值不能作为重载的依据</p>
+<h4 id="重载的原理">重载的原理：</h4>
+<p>编译器为了实现函数重载，也是默认为我们做了一些幕后的工作，编译器用不同的参数类型来修饰不同的函数名，比如void func(); 编译器可能会将函数名修饰成_func，当编译器碰到void func(int x,char c),编译器可能会将函数名修饰为_func_int_char，不同的编译器可能会产生不同的内部名。</p>
+<h2 id="缺省函数参数">缺省函数参数</h2>
+<p>是指如果参数值确定的话，可以在函数中直接赋值，调用的时候就不用再填写值，但是缺省参数必须从租后一个开始写默认参数，从后向前写。</p>
+<p>一个函数不能既是函数重载，又是缺省参数函数。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">show</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span><span class="kt">int</span> <span class="n">b</span><span class="p">,</span><span class="kt">int</span> <span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">d</span> <span class="o">=</span> <span class="mi">4</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span><span class="o">&lt;&lt;</span><span class="n">a</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">b</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">c</span><span class="o">&lt;&lt;</span><span class="s">&#34; &#34;</span><span class="o">&lt;&lt;</span><span class="n">d</span><span class="s">&#34; &#34;</span><span class="o">&lt;</span><span class="p">,</span><span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//调用的时候可以这样
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nf">show</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// d 默认赋值为4
+</span></span></span></code></pre></div><h2 id="引用">引用：</h2>
+<p>引用就是给变量起别名。</p>
+<ul>
+<li>
+<p>引用不能为空</p>
+</li>
+<li>
+<p>引用必须进行初始化</p>
+</li>
+<li>
+<p>引用初始化后不能修改</p>
+</li>
+</ul>
+<p>可以为指针设置引用；可以定义指针数组但是不可以定义引用数组，可以定义数组引用。const 引用可使用相关类型的对象(常量,非同类型的变量或表达式)初始化。这个是 const 引用与普通引用最大的区别。const int &amp;a=2;是合法的，而int &amp;a = 2;是不合法的。</p>
+<p>引用的本质是一个常指针，type * const p;</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"> <span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">&amp;</span><span class="n">Kk</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">//KK就是引用
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">int</span> <span class="o">*</span><span class="n">p</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="o">*&amp;</span><span class="n">rp</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span><span class="c1">//指针的引用
+</span></span></span></code></pre></div><h2 id="类">类：</h2>
+<ol>
+<li>将相同事物的特性抽象出来的模板， 用class关键字来定义</li>
+</ol>
+<ul>
+<li>
+<p>对象是类的一个实例化</p>
+</li>
+<li>
+<p>类中定义了成员变量和成员方法</p>
+</li>
+<li>
+<p>访问修饰符：public , private, protected，默认是private。</p>
+</li>
+<li>
+<p>结构体和类的区别就是：结构体默认访问权限是public，类是private。</p>
+</li>
+<li>
+<p>构造函数是用来初始化对象的，包括有参构造和无参构造，在定义对象的时候，默认调用，创建对象的时候没有参数，直接调用无参构造器，有参数的时候根据参数的不同而选择调用不同的有参构造器。</p>
+</li>
+<li>
+<p>析构函数是在对象回收的时候调用的，自动回收类中new的空间</p>
+</li>
+</ul>
+<h3 id="构造和析构">构造和析构：</h3>
+<p>默认情况下，c++编译器至少为我们写的类增加3个函数</p>
+<p>1．默认构造函数(无参，函数体为空)</p>
+<p>2．默认析构函数(无参，函数体为空)</p>
+<p>3．默认拷贝构造函数，对类中非静态成员属性简单值拷贝</p>
+<p>如果用户定义拷贝构造函数，c++不会再提供任何默认构造函数，构造函数没有返回值。</p>
+<p>如果用户定义了普通构造(非拷贝)，c++不在提供默认无参构造，但是会提供默认拷贝构造。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000702.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000702.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000702.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000702.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000702.png"
+        title="img" /></p>
+<ol>
+<li>
+<h3 id="深拷贝和浅拷贝">深拷贝和浅拷贝：</h3>
+</li>
+</ol>
+<p>同一类型的对象之间可以赋值，使得两个对象的成员变量的值相同，两个对象仍然是独立的两个对象，这种情况被称为<strong>浅拷贝(等位拷贝)。</strong></p>
+<p>拷贝构造函数，系统提供的是浅拷贝。</p>
+<p>一般情况下，浅拷贝没有任何副作用，但是当类中有指针，并且指针指向动态分配的内存空间，析构函数做了动态内存释放的处理，会导致内存问题，导致一块内存被释放了两次。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000447.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000447.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000447.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000447.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000447.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222000447.png" /></p>
+<p>当类中有指针，并且此指针有动态分配空间，析构函数做了释放处理，往往需要自定义拷贝构造函数，自行给指针动态分配空间，这就是深拷贝。</p>
+<h2 id="初始化列表">初始化列表：</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="nf">Person</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">,</span> <span class="kt">int</span> <span class="n">c</span><span class="p">)</span><span class="o">:</span><span class="nf">mA</span><span class="p">(</span><span class="n">a</span><span class="p">),</span><span class="nf">mB</span><span class="p">(</span><span class="n">b</span><span class="p">),</span><span class="nf">mC</span><span class="p">(</span><span class="n">c</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// 初始化成员列表(参数列表)只能在构造函数使用。
+</span></span></span></code></pre></div><h2 id="类对象作为成员">类对象作为成员：</h2>
+<p>当调用构造函数时，首先按各对象成员在类定义中的顺序（和参数列表的顺序无关）依次调用它们的构造函数，对这些对象初始化，最后再调用本身的函数体。也就是说，先调用对象成员的构造函数，再调用本身的构造函数。析构函数和构造函数调用顺序相反。</p>
+<h2 id="静态成员变量和静态成员函数">静态成员变量和静态成员函数：</h2>
+<ul>
+<li>
+<p>类内静态成员类外初始化，通过类名来访问。</p>
+</li>
+<li>
+<p>类的静态成员函数不能访问类的普通变量，只能访问静态成员变量。</p>
+</li>
+<li>
+<p>在类内声明的static成员不占用类的大小。</p>
+</li>
+</ul>
+<h2 id="this指针">this指针</h2>
+<ul>
+<li>
+<p>this指针是一种const修饰的常指针。</p>
+</li>
+<li>
+<p>this指针是隐含在对象成员函数内的一种指针。当一个对象被创建后，它的每一个成员函数都含有一个系统自动生成的隐含指针this，用以保存这个对象的地址，也就是说虽然我们没有写上this指针，编译器在编译的时候也是会加上的。因此this也称为“指向本对象的指针”，this指针并不是对象的一部分，不会影响sizeof(对象)的结果。</p>
+</li>
+<li>
+<p>this指针是C++实现封装的一种机制，它将对象和该对象调用的成员函数连接在一起，在外部看来，每一个对象都拥有自己的函数成员。一般情况下，并不写this，而是让系统进行默认设置。</p>
+<p>当形参和成员变量同名时，可用this指针来区分；在类的非静态成员函数中返回对象本身，可使用return *this；静态成员函数内部没有this指针，静态成员函数不能操作非静态成员变量。</p>
+</li>
+</ul>
+<h2 id="const">const：</h2>
+<p>C语言中const是伪常量，可以通过指针修改</p>
+<p>C++中const会放入到符号表中</p>
+<p>C语言中const默认是外部链接，C++中const默认是内部链接</p>
+<ol>
+<li>
+<h3 id="const分配内存情况">const分配内存情况：</h3>
+</li>
+</ol>
+<p>(1).对变量取地址，会分配临时内存</p>
+<p>(2).extern关键字下的const会分配内存</p>
+<p>(3).用普通变量初始化const变量</p>
+<p>(4).自定义数据类型会分配内存</p>
+<ol start="2">
+<li>
+<h3 id="常函数和常对象">常函数和常对象</h3>
+</li>
+</ol>
+<p>常函数：用const修饰的成员函数时，const修饰this指针指向的内存区域，成员函数体内不可以修改本类中的任何普通成员变量，当成员变量类型符前用mutable修饰时例外。</p>
+<p>常对象：常对象只能调用const的成员函数， 常对象可访问 const 或非 const 数据成员，不能修改，除非成员用mutable修饰。</p>
+<p>如果const构成重载，const对象只能调用const修饰的函数，不是const修饰的对象，优先调用非const的函数。const对象只能调用const函数，非const修饰的对象可以调用const修饰的函数。类外定义的const函数，需要在声明处和定义处都要加上const。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"> <span class="c1">//const修饰成员函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">class</span> <span class="n">Person</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Person</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">this</span><span class="o">-&gt;</span><span class="n">mAge</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">this</span><span class="o">-&gt;</span><span class="n">mID</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//在函数括号后面加上const,修饰成员变量不可修改,除了mutable变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">someOperate</span><span class="p">()</span> <span class="k">const</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">//this-&gt;mAge = 200; //mAge不可修改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">this</span><span class="o">-&gt;</span><span class="n">mID</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">ShowPerson</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;ID:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">mID</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; mAge:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">mAge</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nl">private</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">mAge</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">mutable</span> <span class="kt">int</span> <span class="n">mID</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">test</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="k">const</span> <span class="n">Person</span> <span class="n">person</span><span class="p">;</span><span class="c1">//常对象
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//1. 可访问数据成员
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;Age:&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">person</span><span class="p">.</span><span class="n">mAge</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//person.mAge = 300; //不可修改
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">person</span><span class="p">.</span><span class="n">mID</span> <span class="o">=</span> <span class="mi">1001</span><span class="p">;</span> <span class="c1">//但是可以修改mutable修饰的成员变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="c1">//2. 只能访问const修饰的函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">person</span><span class="p">.</span><span class="nf">someOperate</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="单例模式">单例模式</h2>
+<p>一个类只能有一个对象。将构造函数和拷贝构造函数全部设为private，设置一个静态指针变量，仅向外界提供静态指针变量的访问接口。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"> <span class="n">class</span> <span class="n">Printer</span><span class="p">{</span> <span class="c1">//打印机
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="nl">public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">// 外界访问的接口
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="k">static</span> <span class="n">Printer</span><span class="o">*</span> <span class="nf">getInstance</span><span class="p">(){</span> <span class="k">return</span> <span class="n">pPrinter</span><span class="p">;}</span>
+</span></span><span class="line"><span class="cl"><span class="nl">private</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Printer</span><span class="p">(){</span> <span class="n">mTimes</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Printer</span><span class="p">(</span><span class="k">const</span> <span class="n">Printer</span><span class="o">&amp;</span><span class="p">){}</span>
+</span></span><span class="line"><span class="cl"><span class="nl">private</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">static</span> <span class="n">Printer</span><span class="o">*</span> <span class="n">pPrinter</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span></code></pre></div><h2 id="友元">友元</h2>
+<p>friend关键字只出现在声明处,其他类、类成员函数、全局函数都可声明为友元
+友元函数不是类的成员，不带this指针,友元函数可访问对象任意成员属性，包括私有属性。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">class</span> <span class="n">Building</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//全局函数做友元函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">friend</span> <span class="kt">void</span> <span class="nf">CleanBedRoom</span><span class="p">(</span><span class="n">Building</span><span class="o">&amp;</span> <span class="n">building</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">//成员函数做友元函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">friend</span> <span class="kt">void</span> <span class="n">MyFriend</span><span class="o">::</span><span class="nf">LookAtBedRoom</span><span class="p">(</span><span class="n">Building</span><span class="o">&amp;</span> <span class="n">building</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">friend</span> <span class="kt">void</span> <span class="n">MyFriend</span><span class="o">::</span><span class="nf">PlayInBedRoom</span><span class="p">(</span><span class="n">Building</span><span class="o">&amp;</span> <span class="n">building</span><span class="p">);</span> 
+</span></span><span class="line"><span class="cl">    <span class="c1">//友元类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="n">friend</span> <span class="n">class</span> <span class="n">MyFriend</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">Building</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">this</span><span class="o">-&gt;</span><span class="n">mSittingRoom</span> <span class="o">=</span> <span class="s">&#34;客厅&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">this</span><span class="o">-&gt;</span><span class="n">mBedroom</span> <span class="o">=</span> <span class="s">&#34;卧室&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">mSittingRoom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="nl">private</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">string</span> <span class="n">mBedroom</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="n">class</span> <span class="n">MyFriend</span><span class="p">{</span><span class="c1">//友元类
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">public</span><span class="err">：</span><span class="c1">//友元成员函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="kt">void</span> <span class="nf">LookAtBedRoom</span><span class="p">(</span><span class="n">Building</span><span class="o">&amp;</span> <span class="n">building</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;我的朋友参观&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">building</span><span class="p">.</span><span class="n">mBedroom</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">void</span> <span class="nf">PlayInBedRoom</span><span class="p">(</span><span class="n">Building</span><span class="o">&amp;</span> <span class="n">building</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">         <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;我的朋友玩耍在&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">building</span><span class="p">.</span><span class="n">mBedroom</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="c1">//友元全局函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">void</span> <span class="nf">CleanBedRoom</span><span class="p">(</span><span class="n">Building</span><span class="o">&amp;</span> <span class="n">building</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&#34;友元全局函数访问&#34;</span> <span class="o">&lt;&lt;</span> <span class="n">building</span><span class="p">.</span><span class="n">mBedroom</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">Building</span> <span class="n">building</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">MyFriend</span> <span class="n">myfriend</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nf">CleanBedRoom</span><span class="p">(</span><span class="n">building</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">myfriend</span><span class="p">.</span><span class="nf">LookAtBedRoom</span><span class="p">(</span><span class="n">building</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="n">myfriend</span><span class="p">.</span><span class="nf">PlayInBedRoom</span><span class="p">(</span><span class="n">building</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">system</span><span class="p">(</span><span class="s">&#34;pause&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>[友元类注意]</strong></p>
+<ol>
+<li>
+<p>友元关系不能被继承。</p>
+</li>
+<li>
+<p>友元关系是单向的，类A是类B的朋友，但类B不一定是类A的朋友。</p>
+</li>
+<li>
+<p>友元关系不具有传递性。类B是类A的朋友，类C是类B的朋友，但类C不一定是类A的朋友。</p>
+</li>
+</ol>
+<h2 id="继承">继承</h2>
+<ol>
+<li>
+<h3 id="三种继承方式">三种继承方式：</h3>
+</li>
+</ol>
+<p>public ：    公有继承</p>
+<p>private ：   私有继承</p>
+<p>protected ： 保护继承</p>
+<p>从继承源上分：</p>
+<p>单继承：指每个派生类只直接继承了一个基类的特征</p>
+<p>多继承：指多个基类派生出一个派生类的继承关系,多继承的派生类直接继承了不止一个基类的特征。</p>
+<ol start="2">
+<li>
+<h3 id="继承中的构造和析构">继承中的构造和析构</h3>
+</li>
+</ol>
+<p>构造的时候：先调用父类的构造函数， 再调用子类的构造函数</p>
+<p>析构的时候：先调用子类的析构函数，再调用父类的析构函数</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222004100.png"
+        data-srcset="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222004100.png, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222004100.png 1.5x, https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222004100.png 2x"
+        data-sizes="auto"
+        alt="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222004100.png"
+        title="https://picture-1306331535.cos.ap-nanjing.myqcloud.com/202310222004100.png" /></p>
+<ol start="3">
+<li>
+<h3 id="多继承">多继承</h3>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="n">class</span> <span class="nl">Son</span> <span class="p">:</span> <span class="n">public</span> <span class="n">Father1</span><span class="p">,</span> <span class="n">public</span> <span class="n">Father2</span><span class="p">{};</span><span class="c1">//多继承的一个示例 
+</span></span></span></code></pre></div><p>多继承会带来一些二义性的问题。</p>
+<h2 id="虚基类">虚基类</h2>
+<p>虚基类中有一个vbptr(虚基类指针)，这个指针指向了虚基类表。</p>
+<h2 id="多态">多态</h2>
+<ol>
+<li>
+<h3 id="含义">含义：</h3>
+</li>
+</ol>
+<p>父类指针指向子类对象</p>
+<p>虚基类中有一个虚函数表指针(vfptr), 虚函数表指针指向了一张虚函数表。C++动态多态性是通过虚函数来实现的，虚函数允许子类重写父类成员函数。c++要求在基类中声明这个函数的时候使用virtual关键字。</p>
+<p>静态联编：函数重载 发生在编译时期；</p>
+<p>动态联编：虚函数 父类的指针调用不同的子类方法 发生在运行时期。</p>
+<ol start="2">
+<li>
+<h3 id="virtual用法">virtual用法：</h3>
+</li>
+</ol>
+<ul>
+<li>
+<p>在这个函数声明前面加上virtual关键字，定义时候不需要.</p>
+</li>
+<li>
+<p>如果一个函数在基类中被声明为virtual，那么在所有派生类中它都是virtual的.</p>
+</li>
+<li>
+<p>在派生类中virtual函数的重定义称为重写(override).</p>
+</li>
+<li>
+<p>virtual关键字只能修饰成员函数.</p>
+</li>
+<li>
+<p>构造函数不能为虚函数</p>
+</li>
+</ul>
+<ol start="3">
+<li>
+<h3 id="纯虚函数">纯虚函数</h3>
+</li>
+</ol>
+<p>在设计时，常常希望基类仅仅作为其派生类的一个接口。做到这点，可以在基类中加入至少一个纯虚函数,使得基类称为抽象类。</p>
+<p>纯虚函数使用关键字virtual，并在其后面加上=0。如果试图去实例化一个抽象类，编译器则会阻止这种操作。</p>
+<ol start="4">
+<li>
+<h3 id="虚析构和纯虚析构">虚析构和纯虚析构</h3>
+</li>
+</ol>
+<p>普通的析构函数是不会调用子类的析构函数的，所以可能会导致内存泄漏。因此，要使用虚析构。虚析构函数是为了解决<a href="http://baike.baidu.com/view/535539.htm" target="_blank" rel="noopener noreffer ">基类</a>的<a href="http://baike.baidu.com/view/159417.htm" target="_blank" rel="noopener noreffer ">指针</a>指向派生类对象，并用基类的指针删除派生类对象。</p>
+<p>如果类的目的不是为了实现多态，作为基类来使用，就不要声明虚析构函数，反之，则应该为类声明虚析构函数。</p>
+<h2 id="两个类的头文件互相包含的问题">两个类的头文件互相包含的问题</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">//文件A.h中的代码 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#pragma once 
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;B.h&#34; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">class</span> <span class="n">A</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">};</span>     
+</span></span><span class="line"><span class="cl"><span class="c1">//文件B.h中的代码 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="cp">#pragma once 
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;A.h&#34; </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">class</span> <span class="n">B</span>  <span class="p">{</span>  
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>  
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>这样是无法通过编译的，其原因是它们的头文件互相包含了，你包含我，我又包含你。</p>
+<p>如果在A类中使用了B类的对象，那么就必须包含B类的头文件，而B类中就不能使用A类的对象了，这时就可以用对象的指针，用对象的指针，可以作简单的声明即可代替头文件的包含。也可以两个类中互相使用了对方的指针，这样的情况很简单，分别在各自的头文件中声明一下使用的类，而在各自的源文件中包含对方的头文件即可。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"> <span class="cp">#pragma once 
+</span></span></span><span class="line"><span class="cl"><span class="cp">#include</span> <span class="cpf">&#34;B.h&#34;         //使用了B类的对象，所以要包含头文件   </span><span class="cp">
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">class</span> <span class="n">A</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>              
+</span></span><span class="line"><span class="cl"><span class="p">};</span>  
+</span></span><span class="line"><span class="cl"> <span class="c1">//文件B.h中的代码 
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="cp">#pragma once 
+</span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="n">class</span> <span class="n">A</span><span class="p">;</span>        <span class="c1">//使用了A类对象的指针，只做简单的声明即可
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="n">class</span> <span class="n">B</span> <span class="p">{</span>  
+</span></span><span class="line"><span class="cl"><span class="nl">public</span><span class="p">:</span> 
+</span></span><span class="line"><span class="cl">  <span class="n">A</span><span class="o">*</span> <span class="n">a</span><span class="p">;</span> <span class="c1">/////////////
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="p">};</span>
+</span></span></code></pre></div><h2 id="运算符重载">运算符重载</h2>
+<ol>
+<li>
+<p>重载的运算符的结合律和优先级跟原先的相同。不能被重载的运算符有：</p>
+</li>
+<li>
+<p>前置递增递减运算符和后置递增递减运算符</p>
+</li>
+</ol>
+<p>​</p>
+<ol start="3">
+<li>类中重载赋值运算符</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="err">类名</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">类名</span><span class="o">&amp;</span> <span class="n">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="err">类名</span><span class="o">&amp;</span> <span class="err">源对象</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">        <span class="err">拷贝体</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>重载不能改变运算符运算对象（即操作数）的个数。</p>
+<p>重载不能改变运算符的优先级别。</p>
+<p>重载不能改变运算符的结合性。</p>
+<p>重载运算符的函数不能有默认的参数</p>
+<h2 id="模板">模板</h2>
+<p>函数模板，实际上是建立一个通用函数，其函数类型和形参类型不具体制定，用一个虚拟的类型来代表。这个通用函数就成为函数模板。凡是函数体相同的函数都可以用这个模板代替，不必定义多个函数，只需在模板中定义一次即可。在调用函数时系统会根据实参的类型来取代模板中的虚拟类型，从而实现不同函数的功能。函数模板不会进行隐式类型转换。c++提供两种模板机制:函数模板和类模板。</p>
+<h2 id="智能指针-1">智能指针</h2>
+<p><a href="https://www.cnblogs.com/wangkeqin/p/9351191.html" target="_blank" rel="noopener noreffer ">https://www.cnblogs.com/wangkeqin/p/9351191.html</a></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2023-10-22</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 Line" data-sharer="line" data-url="https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/" data-title="C&#43;&#43; 基础"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/" data-title="C&#43;&#43; 基础" data-ralateuid="x"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://leexsh.github.io/posts/cpp/cpp_%E5%9F%BA%E7%A1%80/" data-title="C&#43;&#43; 基础"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@7.3.0/icons/baidu.svg" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/cpp/">cpp</a>,&nbsp;<a href="/tags/%E5%8E%86%E5%8F%B2%E6%96%87%E6%A1%A3%E8%BF%81%E7%A7%BB/">历史文档迁移</a>,&nbsp;<a href="/tags/%E6%8A%80%E6%9C%AF/">技术</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/cpp/cpp_style_guide/" class="prev" rel="prev" title="C&#43;&#43; Style Guide"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>C++ Style Guide</a>
+            <a href="/posts/cpp/primer%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="next" rel="next" title="C&#43;&#43; Primer阅读笔记">C++ Primer阅读笔记<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+<div id="comments"></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2023 - 2024</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://github.com/leexsh" target="_blank">leexsh</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.38.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.13.1/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/copy-tex.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":50},"comment":{},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":true,"left":"\\begin{equation}","right":"\\end{equation}"},{"display":true,"left":"\\begin{equation*}","right":"\\end{equation*}"},{"display":true,"left":"\\begin{align}","right":"\\end{align}"},{"display":true,"left":"\\begin{align*}","right":"\\end{align*}"},{"display":true,"left":"\\begin{alignat}","right":"\\end{alignat}"},{"display":true,"left":"\\begin{alignat*}","right":"\\end{alignat*}"},{"display":true,"left":"\\begin{gather}","right":"\\end{gather}"},{"display":true,"left":"\\begin{CD}","right":"\\end{CD}"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":null,"algoliaIndex":null,"algoliaSearchKey":null,"highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

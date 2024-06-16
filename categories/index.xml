@@ -1,23 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Categories on my blogs</title>
-    <link>https://leexsh.github.io/categories/</link>
-    <description>Recent content in Categories on my blogs</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language>
-    <managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
-    <webMaster>leexsh31@gmail.com (leexsh)</webMaster>
-    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 05 May 2024 16:41:20 +0800</lastBuildDate><atom:link href="https://leexsh.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>文档</title>
-      <link>https://leexsh.github.io/categories/documentation/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <author>leexsh31@gmail.com (leexsh)</author>
-      <guid>https://leexsh.github.io/categories/documentation/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Categories - 分类 - my blogs</title>
+        <link>https://leexsh.github.io/categories/</link>
+        <description>Categories - 分类 - my blogs</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>leexsh31@gmail.com (leexsh)</managingEditor>
+            <webMaster>leexsh31@gmail.com (leexsh)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 05 May 2024 16:41:20 &#43;0800</lastBuildDate><atom:link href="https://leexsh.github.io/categories/" rel="self" type="application/rss+xml" /><item>
+    <title>搬运</title>
+    <link>https://leexsh.github.io/categories/%E6%90%AC%E8%BF%90/</link>
+    <pubDate>Sun, 05 May 2024 16:41:20 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/categories/%E6%90%AC%E8%BF%90/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Go</title>
+    <link>https://leexsh.github.io/categories/go/</link>
+    <pubDate>Mon, 30 Oct 2023 23:18:40 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/categories/go/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>笔记</title>
+    <link>https://leexsh.github.io/categories/%E7%AC%94%E8%AE%B0/</link>
+    <pubDate>Sun, 22 Oct 2023 21:22:42 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/categories/%E7%AC%94%E8%AE%B0/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>OC</title>
+    <link>https://leexsh.github.io/categories/oc/</link>
+    <pubDate>Sun, 22 Oct 2023 20:56:21 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/categories/oc/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>Linux</title>
+    <link>https://leexsh.github.io/categories/linux/</link>
+    <pubDate>Sun, 22 Oct 2023 20:45:33 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/categories/linux/</guid>
+    <description><![CDATA[]]></description>
+</item>
+<item>
+    <title>cpp</title>
+    <link>https://leexsh.github.io/categories/cpp/</link>
+    <pubDate>Sun, 22 Oct 2023 20:19:09 &#43;0800</pubDate>
+    <author>leexsh</author>
+    <guid>https://leexsh.github.io/categories/cpp/</guid>
+    <description><![CDATA[]]></description>
+</item>
+</channel>
 </rss>
